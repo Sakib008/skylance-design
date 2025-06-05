@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // This disables the Next.js watermark in development mode
+  devIndicators: {
+    buildActivity: true,
+    // buildActivityPosition: "bottom-right",
+  },
+}
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
+module.exports = nextConfig
