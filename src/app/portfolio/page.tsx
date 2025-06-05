@@ -1,0 +1,247 @@
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { ExternalLink, Github, ArrowRight, ChevronRight } from "lucide-react"
+
+export default function PortfolioPage() {
+  const projects = [
+    {
+      title: "E-Commerce Platform",
+      description: "A modern e-commerce solution with advanced filtering, payment integration, and admin dashboard.",
+      image: "/placeholder.svg?height=600&width=800&text=E-Commerce%20Platform",
+      tags: ["React", "Next.js", "Stripe", "PostgreSQL"],
+      category: "E-Commerce",
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      title: "SaaS Dashboard",
+      description: "Comprehensive analytics dashboard for a SaaS platform with real-time data visualization.",
+      image: "/placeholder.svg?height=600&width=800&text=SaaS%20Dashboard",
+      tags: ["React", "TypeScript", "Chart.js", "Node.js"],
+      category: "SaaS",
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      title: "Healthcare App",
+      description: "Patient management system with appointment scheduling and medical records.",
+      image: "/placeholder.svg?height=600&width=800&text=Healthcare%20App",
+      tags: ["Next.js", "Prisma", "Tailwind", "Vercel"],
+      category: "Healthcare",
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      title: "Real Estate Platform",
+      description: "Property listing platform with advanced search, virtual tours, and agent profiles.",
+      image: "/placeholder.svg?height=600&width=800&text=Real%20Estate",
+      tags: ["React", "MongoDB", "Express", "AWS"],
+      category: "Real Estate",
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      title: "Learning Management System",
+      description: "Online education platform with course creation, progress tracking, and video streaming.",
+      image: "/placeholder.svg?height=600&width=800&text=LMS%20Platform",
+      tags: ["Next.js", "Supabase", "Video.js", "Stripe"],
+      category: "Education",
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      title: "Restaurant Booking App",
+      description: "Table reservation system with menu display, online ordering, and payment processing.",
+      image: "/placeholder.svg?height=600&width=800&text=Restaurant%20App",
+      tags: ["React", "Firebase", "PayPal", "PWA"],
+      category: "Restaurant",
+      liveUrl: "#",
+      githubUrl: "#",
+    },
+  ]
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 rounded-full blur-3xl"></div>
+        </div>
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]"></div>
+
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium mb-6">
+              <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
+              Featured Work
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+              Our{" "}
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Portfolio
+              </span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Explore our recent projects and see how we&apos;ve helped businesses transform their digital presence with
+              innovative web applications.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Grid */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
+
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
+              Recent Projects
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Work That Speaks</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Each project represents our commitment to excellence and innovation in web development.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {projects.map((project, index) => (
+              <div key={index} className="group">
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={800}
+                      height={600}
+                      className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-8">
+                      <div className="flex space-x-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <Button size="sm" className="bg-white text-slate-900 hover:bg-gray-100">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="border-white text-white hover:bg-white hover:text-slate-900"
+                        >
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-white/90 text-slate-900 rounded-full text-sm font-medium backdrop-blur-sm">
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold mb-4 text-slate-900 group-hover:text-purple-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 rounded-full text-sm font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Button
+                      variant="ghost"
+                      className="text-purple-600 hover:text-purple-800 p-0 group-hover:translate-x-2 transition-transform"
+                    >
+                      View project details
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]"></div>
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-purple-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-pink-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-5xl mx-auto backdrop-blur-sm bg-white/10 rounded-3xl border border-white/20 p-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-white mb-4">Project Success Metrics</h2>
+              <p className="text-gray-300">Real results from our portfolio projects</p>
+            </div>
+            <div className="grid md:grid-cols-4 gap-8 text-center">
+              <div className="group">
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
+                  150+
+                </div>
+                <div className="text-gray-300">Projects Delivered</div>
+              </div>
+              <div className="group">
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">98%</div>
+                <div className="text-gray-300">Client Satisfaction</div>
+              </div>
+              <div className="group">
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
+                  50M+
+                </div>
+                <div className="text-gray-300">Users Reached</div>
+              </div>
+              <div className="group">
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
+                  24/7
+                </div>
+                <div className="text-gray-300">Support Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
+        </div>
+        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:30px_30px]"></div>
+
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/30 bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
+              <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
+              Ready to Start Your Project?
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Create Your Success Story</h2>
+            <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
+              Ready to join our portfolio of successful projects? Let&apos;s discuss your vision and create something
+              extraordinary together.
+            </p>
+            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+              Start Your Project
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
