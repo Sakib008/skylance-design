@@ -12,7 +12,7 @@ const expertiseData = {
       "We create user-centered designs that not only look stunning but also provide seamless, intuitive experiences that convert visitors into loyal customers.",
     icon: "Palette",
     color: "purple",
-    image: "/placeholder.svg?height=600&width=800&text=UI/UX%20Design",
+    image: "https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg?auto=compress&cs=tinysrgb&w=800",
     benefits: [
       "Increased user engagement and satisfaction",
       "Higher conversion rates and reduced bounce rates",
@@ -45,7 +45,7 @@ const expertiseData = {
       "We develop high-performance web applications using cutting-edge technologies that are optimized for speed, security, and scalability to meet your business needs.",
     icon: "Code",
     color: "blue",
-    image: "/placeholder.svg?height=600&width=800&text=Web%20Development",
+    image: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=800",
     benefits: [
       "Fast-loading, responsive websites that work on all devices",
       "Secure, reliable applications with 99.9% uptime",
@@ -78,7 +78,7 @@ const expertiseData = {
       "We optimize your web applications for lightning-fast performance, ensuring excellent user experience and higher search engine rankings through technical excellence.",
     icon: "Zap",
     color: "green",
-    image: "/placeholder.svg?height=600&width=800&text=Performance%20Optimization",
+    image: "https://images.pexels.com/photos/1181678/pexels-photo-1181678.jpeg?auto=compress&cs=tinysrgb&w=800",
     benefits: [
       "Faster page load times and improved user experience",
       "Higher search engine rankings with better Core Web Vitals",
@@ -127,7 +127,7 @@ export default function ExpertisePage({ params }: { params: { slug: string } }) 
   }
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
@@ -183,7 +183,7 @@ export default function ExpertisePage({ params }: { params: { slug: string } }) 
             <div className="relative">
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
                 <Image
-                  src={expertise.image || "/placeholder.svg"}
+                  src={expertise.image}
                   alt={expertise.title}
                   width={800}
                   height={600}
@@ -208,27 +208,23 @@ export default function ExpertisePage({ params }: { params: { slug: string } }) 
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">How We Work</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our proven methodology ensures successful delivery of {expertise.title.toLowerCase()} services.
+              A proven methodology that ensures successful project delivery and client satisfaction.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
             {expertise.process.map((step, index) => (
-              <div key={index} className="relative">
-                <div className="flex items-start gap-8 mb-12">
-                  <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-white font-bold text-xl">{index + 1}</span>
-                    </div>
-                    {index < expertise.process.length - 1 && (
-                      <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-1 h-12 bg-gradient-to-b from-purple-600/50 to-pink-600/50"></div>
-                    )}
+              <div key={index} className="group text-center relative">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                    <span className="text-2xl font-bold text-white">{index + 1}</span>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2 text-slate-900">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
-                  </div>
+                  {index < expertise.process.length - 1 && (
+                    <div className="hidden lg:block absolute top-1/2 left-full w-full h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transform -translate-y-1/2 z-0"></div>
+                  )}
                 </div>
+                <h3 className="text-xl font-bold mb-4 text-slate-900">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
               </div>
             ))}
           </div>
@@ -242,24 +238,21 @@ export default function ExpertisePage({ params }: { params: { slug: string } }) 
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Features
+              What We Offer
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">What We Offer</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Comprehensive Solutions</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive {expertise.title.toLowerCase()} services tailored to your business needs.
+              Everything you need to succeed in the digital landscape.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {expertise.features.map((feature, index) => (
-              <div
-                key={index}
-                className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <span className="text-white font-bold">{index + 1}</span>
+              <div key={index} className="group p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start space-x-4">
+                  <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">{feature}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-slate-900">{feature}</h3>
               </div>
             ))}
           </div>
@@ -281,72 +274,28 @@ export default function ExpertisePage({ params }: { params: { slug: string } }) 
               <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
               Ready to Get Started?
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
-              Let&apos;s Discuss Your {expertise.title} Needs
-            </h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Something Amazing</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence with our {expertise.title.toLowerCase()} services? Contact us
-              today for a free consultation.
+              Ready to transform your digital presence? Let&apos;s discuss your project and see how we can help bring your
+              vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-                Get Free Quote
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
               <Link href="/contact">
+                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/services">
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
                 >
-                  Contact Us
+                  View All Services
                 </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Services */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-0 left-0 -mt-24 -ml-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 -mb-24 -mr-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Explore More
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Related Services</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover our other services that complement {expertise.title.toLowerCase()}.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(expertiseData)
-              .filter(([slug]) => slug !== params.slug)
-              .map(([slug, data]) => (
-                <Link href={`/expertise/${slug}`} key={slug}>
-                  <div className="group relative bg-white rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl border border-gray-100">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span className="text-white font-bold">{data.title.charAt(0)}</span>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-slate-900">{data.title}</h3>
-                      <p className="text-gray-600 mb-6">{data.subtitle}</p>
-                      <Button
-                        variant="ghost"
-                        className="text-purple-600 hover:text-purple-800 p-0 group-hover:translate-x-2 transition-transform"
-                      >
-                        Learn more
-                        <ChevronRight className="ml-1 h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </Link>
-              ))}
           </div>
         </div>
       </section>
