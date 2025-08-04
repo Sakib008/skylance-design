@@ -1,7 +1,17 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Code, Palette, Zap, CheckCircle, ChevronRight, Star } from "lucide-react"
-import Link from "next/link"
+"use client"
+
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  Code,
+  Palette,
+  Zap,
+  CheckCircle,
+  ChevronRight,
+  Star,
+} from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -32,35 +42,44 @@ export default function HomePage() {
                 experiences
               </h1>
               <p className="text-xl text-gray-300 mb-8 max-w-lg">
-                Transforming ideas into exceptional web applications that drive business growth through innovative
-                design and cutting-edge development.
+                Transforming ideas into exceptional web applications that drive
+                business growth through innovative design and cutting-edge
+                development.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-6 rounded-xl"
-                >
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-gray-700 text-white hover:bg-white/10 text-lg px-8 py-6 rounded-xl"
-                >
-                  View Our Work
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-8 py-6 rounded-xl"
+                  >
+                    Start Your Project
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/portfolio">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-gray-700 text-white hover:text-white hover:bg-white/10 text-lg px-8 py-6 rounded-xl"
+                  >
+                    View Our Work
+                  </Button>
+                </Link>
               </div>
 
               {/* Social proof */}
               <div className="mt-12">
-                <p className="text-gray-400 mb-3 text-sm">TRUSTED BY INNOVATIVE COMPANIES</p>
+                <p className="text-gray-400 mb-3 text-sm">
+                  TRUSTED BY INNOVATIVE COMPANIES
+                </p>
                 <div className="flex flex-wrap gap-8 items-center opacity-70">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-8">
-                      <div className="text-white font-bold text-xl">LOGO {i}</div>
-                    </div>
-                  ))}
+                  {["The Pure Jam", "Prime Fit", "Smile Bright Dental"].map(
+                    (i) => (
+                      <div key={i} className="h-8">
+                        <div className="text-white font-bold text-xl">{i}</div>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             </div>
@@ -69,7 +88,7 @@ export default function HomePage() {
               {/* 3D-like mockup display */}
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-gradient-to-br from-slate-800 to-slate-900">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
+                  src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"
                   alt="Web application dashboard"
                   width={800}
                   height={600}
@@ -79,20 +98,24 @@ export default function HomePage() {
               </div>
 
               {/* Floating elements */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-purple-500 to-pink-500 p-1 rounded-xl shadow-lg transform rotate-6">
+              <div className="absolute z-10 -top-6 -right-6 bg-gradient-to-br from-purple-500 to-pink-500 p-1 rounded-xl shadow-lg transform rotate-6">
                 <div className="bg-slate-900 p-3 rounded-lg">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    <div className="text-xs text-white font-medium">Live Project</div>
+                    <div className="text-xs text-white font-medium">
+                      Live Project
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-8 -left-8 bg-white p-1 rounded-xl shadow-lg transform -rotate-6">
+              <div className="absolute z-10 -bottom-8 -left-8 bg-white p-1 rounded-xl shadow-lg transform -rotate-6">
                 <div className="bg-slate-900 p-3 rounded-lg">
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-yellow-400" />
-                    <div className="text-xs text-white font-medium">5.0 Rating</div>
+                    <div className="text-xs text-white font-medium">
+                      5.0 Rating
+                    </div>
                   </div>
                 </div>
               </div>
@@ -113,16 +136,21 @@ export default function HomePage() {
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-4">
                 Our Expertise
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">What We Do Best</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
+                What We Do Best
+              </h2>
               <p className="text-xl text-gray-600 max-w-2xl">
-                We specialize in creating cutting-edge web applications that combine stunning design with powerful
-                functionality.
+                We specialize in creating cutting-edge web applications that
+                combine stunning design with powerful functionality.
               </p>
             </div>
-            <Button variant="ghost" className="text-purple-600 hover:text-purple-800 hover:bg-purple-50 mt-6 md:mt-0">
+            <Link
+              href="/services"
+              className="text-purple-600 flex items-center p-2.5 rounded-2xl hover:text-purple-800 hover:bg-purple-50 mt-6 md:mt-0"
+            >
               View All Services
               <ChevronRight className="ml-1 h-4 w-4" />
-            </Button>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -135,10 +163,13 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Palette className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">UI/UX Design</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-900">
+                  UI/UX Design
+                </h3>
                 <p className="text-gray-600 mb-6">
-                  Beautiful, intuitive interfaces that users love. We create designs that not only look amazing but
-                  convert visitors into customers.
+                  Beautiful, intuitive interfaces that users love. We create
+                  designs that not only look amazing but convert visitors into
+                  customers.
                 </p>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
@@ -175,10 +206,12 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Code className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">Web Development</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-900">
+                  Web Development
+                </h3>
                 <p className="text-gray-600 mb-6">
-                  Robust, scalable web applications built with modern technologies. Fast, secure, and optimized for
-                  performance.
+                  Robust, scalable web applications built with modern
+                  technologies. Fast, secure, and optimized for performance.
                 </p>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
@@ -215,10 +248,12 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Zap className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">Optimization</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-900">
+                  Optimization
+                </h3>
                 <p className="text-gray-600 mb-6">
-                  Lightning-fast performance and SEO optimization. We ensure your web app ranks high and loads
-                  instantly.
+                  Lightning-fast performance and SEO optimization. We ensure
+                  your web app ranks high and loads instantly.
                 </p>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
@@ -268,11 +303,15 @@ export default function HomePage() {
                 <div className="text-gray-300">Projects Completed</div>
               </div>
               <div className="group">
-                <div className="text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">98%</div>
+                <div className="text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
+                  98%
+                </div>
                 <div className="text-gray-300">Client Satisfaction</div>
               </div>
               <div className="group">
-                <div className="text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">5+</div>
+                <div className="text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
+                  5+
+                </div>
                 <div className="text-gray-300">Years Experience</div>
               </div>
               <div className="group">
@@ -298,16 +337,20 @@ export default function HomePage() {
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-4">
                 Featured Work
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Recent Projects</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
+                Recent Projects
+              </h2>
               <p className="text-xl text-gray-600 max-w-2xl">
-                Take a look at some of our latest projects that showcase our expertise in web app design and
-                development.
+                Take a look at some of our latest projects that showcase our
+                expertise in web app design and development.
               </p>
             </div>
-            <Button variant="ghost" className="text-purple-600 hover:text-purple-800 hover:bg-purple-50 mt-6 md:mt-0">
-              View All Projects
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </Button>
+            <Link
+              href="/portfolio"
+              className="text-purple-600 flex items-center hover:text-purple-800 p-2.5 rounded-2xl hover:bg-purple-50 mt-6 md:mt-0"
+            >
+              View All Projects <ChevronRight className="ml-1 h-4 w-4" />
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -319,7 +362,7 @@ export default function HomePage() {
               <div key={index} className={`group ${item.offset}`}>
                 <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                   <Image
-                    src={`/placeholder.svg?height=600&width=400&text=Project%20${index + 1}`}
+                    src={`https://images.pexels.com/photos/${1779487 + index}/pexels-photo-${1779487 + index}.jpeg?auto=compress&cs=tinysrgb&w=800`}
                     alt={`Project ${index + 1}`}
                     width={400}
                     height={600}
@@ -371,22 +414,31 @@ export default function HomePage() {
               <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
               Let&apos;s Collaborate
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Ready to Transform Your Ideas?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
+              Ready to Transform Your Ideas?
+            </h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Let&apos;s discuss your project and create something extraordinary together. Get a free consultation and
-              project estimate.
+              Let&apos;s discuss your project and create something extraordinary
+              together. Get a free consultation and project estimate.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-                Get Free Consultation
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
-              >
-                View Pricing
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl"
+                >
+                  Get Free Consultation
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
+                >
+                  View Pricing
+                </Button>
+              </Link>
             </div>
 
             {/* Floating elements */}
@@ -394,7 +446,9 @@ export default function HomePage() {
               <div className="bg-slate-900 p-3 rounded-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <div className="text-xs text-white font-medium">24/7 Support</div>
+                  <div className="text-xs text-white font-medium">
+                    24/7 Support
+                  </div>
                 </div>
               </div>
             </div>
@@ -403,7 +457,9 @@ export default function HomePage() {
               <div className="bg-slate-900 p-3 rounded-lg">
                 <div className="flex items-center gap-2">
                   <Star className="h-4 w-4 text-yellow-400" />
-                  <div className="text-xs text-white font-medium">Premium Service</div>
+                  <div className="text-xs text-white font-medium">
+                    Premium Service
+                  </div>
                 </div>
               </div>
             </div>
@@ -411,5 +467,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
