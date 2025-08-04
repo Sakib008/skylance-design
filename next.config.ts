@@ -5,6 +5,9 @@ const nextConfig = {
     buildActivity: true,
     // buildActivityPosition: "bottom-right",
   },
-}
+  images: {
+    domains: ["images.pexels.com",'drive.google.com'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
