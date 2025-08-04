@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Menu, X, ArrowRight, Sparkles, ChevronDown } from "lucide-react"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Menu, X, ArrowRight, Sparkles, ChevronDown } from "lucide-react";
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  dropdown?: { name: string; href: string }[];
+}
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const pathname = usePathname();
 
-  const navigation = [
+  const navigation: NavigationItem[] = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     {
@@ -27,20 +33,27 @@ export default function Navigation() {
     { name: "Portfolio", href: "/portfolio" },
     { name: "Pricing", href: "/pricing" },
     { name: "Contact", href: "/contact" },
-  ]
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+    setServicesOpen(false);
+  };
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-xl py-2" : "bg-transparent py-4"
+        scrolled
+          ? "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-xl py-2"
+          : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -84,13 +97,14 @@ export default function Navigation() {
                     <Link
                       href={item.href}
                       className={`flex items-center px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group ${
-                        pathname === item.href || pathname.startsWith("/expertise")
+                        pathname === item.href ||
+                        pathname.startsWith("/expertise")
                           ? scrolled
                             ? "text-purple-600 bg-purple-50"
                             : "text-white bg-white/10"
                           : scrolled
-                            ? "text-gray-700 hover:text-purple-600 hover:bg-purple-50"
-                            : "text-white/80 hover:text-white hover:bg-white/10"
+                          ? "text-gray-700 hover:text-purple-600 hover:bg-purple-50"
+                          : "text-white/80 hover:text-white hover:bg-white/10"
                       }`}
                     >
                       {item.name}
@@ -100,7 +114,9 @@ export default function Navigation() {
                     {/* Dropdown Menu */}
                     <div
                       className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 transition-all duration-300 ${
-                        servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2"
+                        servicesOpen
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible translate-y-2"
                       }`}
                     >
                       {item.dropdown.map((dropdownItem) => (
@@ -124,8 +140,8 @@ export default function Navigation() {
                           ? "text-purple-600 bg-purple-50"
                           : "text-white bg-white/10"
                         : scrolled
-                          ? "text-gray-700 hover:text-purple-600 hover:bg-purple-50"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
+                        ? "text-gray-700 hover:text-purple-600 hover:bg-purple-50"
+                        : "text-white/80 hover:text-white hover:bg-white/10"
                     }`}
                   >
                     {item.name}
@@ -137,14 +153,16 @@ export default function Navigation() {
 
           {/* Enhanced CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 hover:from-purple-700 hover:via-purple-800 hover:to-pink-700 text-white px-8 py-3 rounded-2xl font-semibold transition-all duration-300 group shadow-lg hover:shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="relative flex items-center space-x-2">
-                <span>Get Started</span>
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 blur opacity-30 group-hover:opacity-50 transition-opacity duration-300 -z-10"></div>
-            </Button>
+            <Link href="/contact">
+              <Button className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 hover:from-purple-700 hover:via-purple-800 hover:to-pink-700 text-white px-8 py-3 rounded-2xl font-semibold transition-all duration-300 group shadow-lg hover:shadow-xl">
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative flex items-center space-x-2">
+                  <span>Get Started</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 blur opacity-30 group-hover:opacity-50 transition-opacity duration-300 -z-10"></div>
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -154,10 +172,16 @@ export default function Navigation() {
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
               className={`transition-colors duration-300 ${
-                scrolled ? "text-slate-900 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                scrolled
+                  ? "text-slate-900 hover:bg-gray-100"
+                  : "text-white hover:bg-white/10"
               }`}
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
         </div>
@@ -174,10 +198,10 @@ export default function Navigation() {
                       pathname === item.href
                         ? "bg-gradient-to-r from-purple-600/10 to-pink-600/10 text-purple-600"
                         : scrolled
-                          ? "text-gray-700 hover:bg-gray-100"
-                          : "text-white hover:bg-white/10"
+                        ? "text-gray-700 hover:bg-gray-100"
+                        : "text-white hover:bg-white/10"
                     }`}
-                    onClick={() => setIsOpen(false)}
+                    onClick={closeMobileMenu}
                   >
                     {item.name}
                   </Link>
@@ -188,7 +212,7 @@ export default function Navigation() {
                           key={dropdownItem.name}
                           href={dropdownItem.href}
                           className="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 transition-colors"
-                          onClick={() => setIsOpen(false)}
+                          onClick={closeMobileMenu}
                         >
                           {dropdownItem.name}
                         </Link>
@@ -197,17 +221,16 @@ export default function Navigation() {
                   )}
                 </div>
               ))}
-              <Button
-                className="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-2xl mx-4"
-                onClick={() => setIsOpen(false)}
-              >
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="/contact" onClick={closeMobileMenu}>
+                <Button className="mt-6 w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-2xl mx-4">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         )}
       </div>
     </nav>
-  )
+  );
 }
