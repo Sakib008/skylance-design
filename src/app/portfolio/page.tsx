@@ -1,13 +1,14 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, ArrowRight, ChevronRight } from "lucide-react"
+import Link from "next/link"
 
 export default function PortfolioPage() {
   const projects = [
     {
       title: "E-Commerce Platform",
       description: "A modern e-commerce solution with advanced filtering, payment integration, and admin dashboard.",
-      image: "/placeholder.svg?height=600&width=800&text=E-Commerce%20Platform",
+      image: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["React", "Next.js", "Stripe", "PostgreSQL"],
       category: "E-Commerce",
       liveUrl: "#",
@@ -16,7 +17,7 @@ export default function PortfolioPage() {
     {
       title: "SaaS Dashboard",
       description: "Comprehensive analytics dashboard for a SaaS platform with real-time data visualization.",
-      image: "/placeholder.svg?height=600&width=800&text=SaaS%20Dashboard",
+      image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["React", "TypeScript", "Chart.js", "Node.js"],
       category: "SaaS",
       liveUrl: "#",
@@ -25,7 +26,7 @@ export default function PortfolioPage() {
     {
       title: "Healthcare App",
       description: "Patient management system with appointment scheduling and medical records.",
-      image: "/placeholder.svg?height=600&width=800&text=Healthcare%20App",
+      image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["Next.js", "Prisma", "Tailwind", "Vercel"],
       category: "Healthcare",
       liveUrl: "#",
@@ -34,7 +35,7 @@ export default function PortfolioPage() {
     {
       title: "Real Estate Platform",
       description: "Property listing platform with advanced search, virtual tours, and agent profiles.",
-      image: "/placeholder.svg?height=600&width=800&text=Real%20Estate",
+      image: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["React", "MongoDB", "Express", "AWS"],
       category: "Real Estate",
       liveUrl: "#",
@@ -43,7 +44,7 @@ export default function PortfolioPage() {
     {
       title: "Learning Management System",
       description: "Online education platform with course creation, progress tracking, and video streaming.",
-      image: "/placeholder.svg?height=600&width=800&text=LMS%20Platform",
+      image: "https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["Next.js", "Supabase", "Video.js", "Stripe"],
       category: "Education",
       liveUrl: "#",
@@ -52,7 +53,7 @@ export default function PortfolioPage() {
     {
       title: "Restaurant Booking App",
       description: "Table reservation system with menu display, online ordering, and payment processing.",
-      image: "/placeholder.svg?height=600&width=800&text=Restaurant%20App",
+      image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800",
       tags: ["React", "Firebase", "PayPal", "PWA"],
       category: "Restaurant",
       liveUrl: "#",
@@ -112,7 +113,7 @@ export default function PortfolioPage() {
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
                   <div className="relative overflow-hidden">
                     <Image
-                      src={project.image || "/placeholder.svg"}
+                      src={project.image}
                       alt={project.title}
                       width={800}
                       height={600}
@@ -199,15 +200,11 @@ export default function PortfolioPage() {
                 <div className="text-gray-300">Client Satisfaction</div>
               </div>
               <div className="group">
-                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
-                  50M+
-                </div>
-                <div className="text-gray-300">Users Reached</div>
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">5+</div>
+                <div className="text-gray-300">Years Experience</div>
               </div>
               <div className="group">
-                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
-                  24/7
-                </div>
+                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">24/7</div>
                 <div className="text-gray-300">Support Available</div>
               </div>
             </div>
@@ -228,17 +225,29 @@ export default function PortfolioPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/30 bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
               <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
-              Ready to Start Your Project?
+              Ready to Start?
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Create Your Success Story</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Your Next Project</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to join our portfolio of successful projects? Let&apos;s discuss your vision and create something
-              extraordinary together.
+              Inspired by our work? Let&apos;s discuss your project and create something amazing together.
             </p>
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
+                >
+                  View Pricing
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
