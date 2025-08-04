@@ -1,7 +1,8 @@
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, ArrowRight, ChevronRight } from "lucide-react"
 import Link from "next/link"
+import { Badge, CTAButton, StatCard, BackgroundElements } from "@/components/ui"
+import { Button } from "@/components/ui/button"
 
 export default function PortfolioPage() {
   const projects = [
@@ -65,18 +66,13 @@ export default function PortfolioPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 rounded-full blur-3xl"></div>
-        </div>
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]"></div>
+        <BackgroundElements variant="hero" />
 
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
+            <Badge variant="default" icon={<span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>}>
               Featured Work
-            </div>
+            </Badge>
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
               Our{" "}
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -176,11 +172,7 @@ export default function PortfolioPage() {
 
       {/* Stats Section */}
       <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]"></div>
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-purple-600/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-pink-600/20 rounded-full blur-3xl"></div>
-        </div>
+        <BackgroundElements variant="hero" />
 
         <div className="container mx-auto px-4 relative">
           <div className="max-w-5xl mx-auto backdrop-blur-sm bg-white/10 rounded-3xl border border-white/20 p-12">
@@ -189,24 +181,10 @@ export default function PortfolioPage() {
               <p className="text-gray-300">Real results from our portfolio projects</p>
             </div>
             <div className="grid md:grid-cols-4 gap-8 text-center">
-              <div className="group">
-                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">
-                  150+
-                </div>
-                <div className="text-gray-300">Projects Delivered</div>
-              </div>
-              <div className="group">
-                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">98%</div>
-                <div className="text-gray-300">Client Satisfaction</div>
-              </div>
-              <div className="group">
-                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">5+</div>
-                <div className="text-gray-300">Years Experience</div>
-              </div>
-              <div className="group">
-                <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">24/7</div>
-                <div className="text-gray-300">Support Available</div>
-              </div>
+              <StatCard value="150+" label="Projects Delivered" />
+              <StatCard value="98%" label="Client Satisfaction" />
+              <StatCard value="5+" label="Years Experience" />
+              <StatCard value="24/7" label="Support Available" />
             </div>
           </div>
         </div>
@@ -215,38 +193,24 @@ export default function PortfolioPage() {
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-        </div>
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:30px_30px]"></div>
+        <BackgroundElements variant="hero" />
 
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/30 bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
-              <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
+            <Badge variant="white" icon={<span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>}>
               Ready to Start?
-            </div>
+            </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Your Next Project</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
               Inspired by our work? Let&apos;s discuss your project and create something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/pricing">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
-                >
-                  View Pricing
-                </Button>
-              </Link>
+              <CTAButton href="/contact" variant="white" size="lg">
+                Start Your Project
+              </CTAButton>
+              <CTAButton href="/pricing" variant="secondary" size="lg" showArrow={false}>
+                View Pricing
+              </CTAButton>
             </div>
           </div>
         </div>
