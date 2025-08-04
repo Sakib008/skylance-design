@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle, Star, AlertCircle } from "lucide-react"
+import { Badge, CTAButton, BackgroundElements, FloatingElement } from "@/components/ui"
 
 interface FormData {
   name: string;
@@ -106,18 +107,13 @@ export default function ContactPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 rounded-full blur-3xl"></div>
-        </div>
-        <div className="absolute inset-0  bg-grid-white/[0.02] bg-[length:50px_50px]"></div>
+        <BackgroundElements variant="hero" />
 
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
+            <Badge variant="default" icon={<span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>}>
               Let&apos;s Connect
-            </div>
+            </Badge>
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
               Get In{" "}
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
@@ -268,14 +264,12 @@ export default function ContactPage() {
               </div>
 
               {/* Floating elements */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-purple-500 to-pink-500 p-1 rounded-xl shadow-lg transform rotate-6 hidden lg:block">
-                <div className="bg-white p-3 rounded-lg">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <div className="text-xs text-slate-900 font-medium">Quick Response</div>
-                  </div>
-                </div>
-              </div>
+              <FloatingElement
+                icon={<CheckCircle className="h-4 w-4 text-green-500" />}
+                text="Quick Response"
+                position="top-right"
+                className="absolute -top-6 -right-6 hidden lg:block"
+              />
             </div>
 
             {/* Contact Information */}
@@ -407,27 +401,21 @@ export default function ContactPage() {
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-        </div>
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:30px_30px]"></div>
+        <BackgroundElements variant="hero" />
 
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/30 bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
-              <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
+            <Badge variant="white" icon={<span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>}>
               Ready to Start?
-            </div>
+            </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Something Amazing</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
               Ready to transform your digital presence? Contact us today and let&apos;s discuss how we can help bring your
               vision to life.
             </p>
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+            <CTAButton href="/contact" variant="white" size="lg">
               Get Started Today
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </CTAButton>
           </div>
         </div>
       </section>
