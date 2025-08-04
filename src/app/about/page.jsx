@@ -1,6 +1,8 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Users, Award, Target, Heart, ArrowRight, Star } from "lucide-react"
+import { Users, Award, Target,  ArrowRight, Star } from "lucide-react"
+import { Heart } from 'lucide-react';
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -77,7 +79,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
                 <Image
-                  src="/placeholder.svg?height=600&width=600&text=Our%20Team"
+                  src="https://images.pexels.com/photos/6340665/pexels-photo-6340665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Our team at work"
                   width={600}
                   height={600}
@@ -86,7 +88,7 @@ export default function AboutPage() {
               </div>
 
               {/* Floating elements */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-br from-purple-500 to-pink-500 p-1 rounded-xl shadow-lg transform rotate-6">
+              <div className="absolute -top-6 -right-6 z-10 bg-gradient-to-br from-purple-500 to-pink-500 p-1 rounded-xl shadow-lg transform rotate-6">
                 <div className="bg-white p-3 rounded-lg">
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-yellow-400" />
@@ -95,8 +97,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="absolute -bottom-8 -left-8 bg-white p-1 rounded-xl shadow-lg transform -rotate-6">
-                <div className="bg-slate-900 p-3 rounded-lg">
+              <div className="absolute -bottom-8 -left-8 z-10 bg-white p-1 rounded-xl shadow-lg transform -rotate-6">
+                <div className="bg-slate-900  p-3 rounded-lg">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     <div className="text-xs text-white font-medium">5+ Years</div>
@@ -154,9 +156,10 @@ export default function AboutPage() {
                 We stay ahead of trends and technologies to deliver cutting-edge solutions.
               </p>
             </div>
+            
 
             <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Heart className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-slate-900">Passion</h3>
@@ -186,18 +189,29 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: "Alex Johnson",
-                role: "Creative Director",
-                image: "/placeholder.svg?height=400&width=400&text=Alex",
+                name: "Mohammad Sakib",
+                role: "Creative Director & Founder",
+                image: "https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&cs=tinysrgb&w=800",
+                bio: "Passionate about creating exceptional user experiences and leading innovative design solutions."
               },
-              { name: "Sarah Chen", role: "Lead Developer", image: "/placeholder.svg?height=400&width=400&text=Sarah" },
-              { name: "Mike Rodriguez", role: "UX Designer", image: "/placeholder.svg?height=400&width=400&text=Mike" },
+              { 
+                name: "Sarah Chen", 
+                role: "Lead Developer", 
+                image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800",
+                bio: "Full-stack developer with expertise in React, Next.js, and modern web technologies."
+              },
+              { 
+                name: "Mike Rodriguez", 
+                role: "UX Designer", 
+                image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800",
+                bio: "User experience specialist focused on creating intuitive and accessible designs."
+              },
             ].map((member, index) => (
               <div key={index} className="group text-center">
                 <div className="relative mb-6">
                   <div className="relative z-10 w-64 h-64 mx-auto rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
                     <Image
-                      src={member.image || "/placeholder.svg"}
+                      src={member.image}
                       alt={member.name}
                       width={400}
                       height={400}
@@ -207,7 +221,8 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-slate-900">{member.name}</h3>
-                <p className="text-purple-600 font-medium">{member.role}</p>
+                <p className="text-purple-600 font-medium mb-3">{member.role}</p>
+                <p className="text-gray-600 text-sm">{member.bio}</p>
               </div>
             ))}
           </div>
@@ -234,10 +249,12 @@ export default function AboutPage() {
               Ready to transform your digital presence? Let's discuss your project and see how we can help bring your
               vision to life.
             </p>
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/contact">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+                Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
