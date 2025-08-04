@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Code, Palette, Zap, Smartphone, Database, Shield, ArrowRight, ChevronRight } from "lucide-react"
+import Link from "next/link"
 
 export default function ServicesPage() {
   return (
@@ -93,13 +94,15 @@ export default function ServicesPage() {
                     </div>
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  className="text-purple-600 hover:text-purple-800 p-0 group-hover:translate-x-2 transition-transform"
-                >
-                  Learn more about our design process
-                  <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
+                <Link href="/expertise/ui-ux-design">
+                  <Button
+                    variant="ghost"
+                    className="text-purple-600 hover:text-purple-800 p-0 group-hover:translate-x-2 transition-transform"
+                  >
+                    Learn more about our design process
+                    <ChevronRight className="ml-1 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -147,13 +150,15 @@ export default function ServicesPage() {
                     </div>
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  className="text-blue-600 hover:text-blue-800 p-0 group-hover:translate-x-2 transition-transform"
-                >
-                  Explore our tech stack
-                  <ChevronRight className="ml-1 h-4 w-4" />
-                </Button>
+                <Link href="/expertise/web-development">
+                  <Button
+                    variant="ghost"
+                    className="text-blue-600 hover:text-blue-800 p-0 group-hover:translate-x-2 transition-transform"
+                  >
+                    Explore our tech stack
+                    <ChevronRight className="ml-1 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -198,22 +203,22 @@ export default function ServicesPage() {
             </div>
 
             <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Database className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">Data Analytics</h3>
+              <h3 className="text-xl font-bold mb-4 text-slate-900">Database Management</h3>
               <p className="text-gray-600">
-                Implementation of tracking, analytics, and reporting to measure your success.
+                Secure, scalable database solutions with backup and recovery systems.
               </p>
             </div>
 
             <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-slate-900">Security & Maintenance</h3>
               <p className="text-gray-600">
-                Ongoing security updates, maintenance, and support to keep your app running smoothly.
+                Regular security updates, monitoring, and maintenance to keep your app secure.
               </p>
             </div>
           </div>
@@ -231,7 +236,7 @@ export default function ServicesPage() {
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">How We Work</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              A proven methodology that ensures successful project delivery every time.
+              A proven methodology that ensures successful project delivery and client satisfaction.
             </p>
           </div>
 
@@ -240,35 +245,35 @@ export default function ServicesPage() {
               {
                 step: "01",
                 title: "Discovery",
-                description: "We learn about your business, goals, and requirements through detailed consultation.",
+                description: "We start by understanding your business goals, target audience, and project requirements.",
               },
               {
                 step: "02",
-                title: "Design",
-                description: "Creating wireframes, prototypes, and visual designs that align with your vision.",
+                title: "Planning",
+                description: "Creating detailed project plans, wireframes, and technical architecture.",
               },
               {
                 step: "03",
                 title: "Development",
-                description: "Building your web application with clean, efficient, and scalable code.",
+                description: "Building your application with clean, maintainable code and best practices.",
               },
               {
                 step: "04",
                 title: "Launch",
                 description: "Testing, deployment, and ongoing support to ensure your success.",
               },
-            ].map((item, index) => (
-              <div key={index} className="group text-center relative">
-                <div className="relative">
-                  <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                    <span className="text-white font-bold text-xl">{item.step}</span>
+            ].map((phase, index) => (
+              <div key={index} className="group text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                    <span className="text-2xl font-bold text-white">{phase.step}</span>
                   </div>
                   {index < 3 && (
-                    <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-purple-200 to-pink-200"></div>
+                    <div className="hidden lg:block absolute top-1/2 left-full w-full h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transform -translate-y-1/2 z-0"></div>
                   )}
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-slate-900">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+                <h3 className="text-xl font-bold mb-4 text-slate-900">{phase.title}</h3>
+                <p className="text-gray-600">{phase.description}</p>
               </div>
             ))}
           </div>
@@ -290,23 +295,27 @@ export default function ServicesPage() {
               <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
               Ready to Get Started?
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let's Build Something Amazing</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Something Amazing</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence? Let's discuss your project requirements and create a custom
-              solution that fits your needs and budget.
+              Ready to transform your digital presence? Let&apos;s discuss your project and see how we can help bring your
+              vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-                Get Free Quote
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
-              >
-                Schedule Consultation
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/pricing">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-black hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
+                >
+                  View Pricing
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
