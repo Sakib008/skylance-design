@@ -6,27 +6,100 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle, Star } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle, Star, AlertCircle } from "lucide-react"
+
+interface FormData {
+  name: string;
+  email: string;
+  company: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     company: "",
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required"
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required"
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters long"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
+    
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      
+      // Here you would typically send the data to your backend
+      console.log("Form submitted:", formData)
+      
+      setSubmitStatus('success')
+      setFormData({ name: "", email: "", company: "", message: "" })
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000)
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }))
+    
+    // Clear error when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined,
+      }))
+    }
   }
 
   return (
@@ -75,6 +148,27 @@ export default function ContactPage() {
                   <p className="text-gray-600">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
                 </div>
 
+                {/* Success/Error Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-green-800 font-medium">Message sent successfully!</p>
+                      <p className="text-green-700 text-sm">We'll get back to you within 24 hours.</p>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
+                    <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-red-800 font-medium">Something went wrong</p>
+                      <p className="text-red-700 text-sm">Please try again or contact us directly.</p>
+                    </div>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -87,10 +181,14 @@ export default function ContactPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        required
-                        className="w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                        className={`w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500 ${
+                          errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''
+                        }`}
                         placeholder="Your full name"
                       />
+                      {errors.name && (
+                        <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -102,10 +200,14 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required
-                        className="w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                        className={`w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500 ${
+                          errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''
+                        }`}
                         placeholder="your@email.com"
                       />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                      )}
                     </div>
                   </div>
 
@@ -133,20 +235,34 @@ export default function ContactPage() {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      required
                       rows={6}
-                      className="w-full rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
+                      className={`w-full rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500 ${
+                        errors.message ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''
+                      }`}
                       placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
                     />
+                    {errors.message && (
+                      <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                    )}
                   </div>
 
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl h-12"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl h-12 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Sending...
+                      </div>
+                    ) : (
+                      <>
+                        Send Message
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </div>
