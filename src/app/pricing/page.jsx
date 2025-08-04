@@ -6,7 +6,7 @@ export default function PricingPage() {
   const pricingPlans = [
     {
       name: "Starter",
-      price: "$2,999",
+      price: "$399",
       period: "one-time",
       description: "Perfect for small businesses and startups looking to establish their online presence.",
       icon: Sparkles,
@@ -26,7 +26,7 @@ export default function PricingPage() {
     },
     {
       name: "Professional",
-      price: "$7,999",
+      price: "$899",
       period: "one-time",
       description: "Ideal for growing businesses that need advanced features and functionality.",
       icon: Zap,
@@ -50,11 +50,11 @@ export default function PricingPage() {
     },
     {
       name: "Enterprise",
-      price: "$15,999",
+      price: "$1599",
       period: "one-time",
       description: "Complete solution for large businesses requiring custom development and integrations.",
       icon: Crown,
-      color: "gold",
+      color: "blue",
       popular: false,
       features: [
         "Unlimited pages",
@@ -194,16 +194,18 @@ export default function PricingPage() {
                       )}
                     </div>
 
-                    <Button
-                      className={`w-full ${
-                        plan.popular
-                          ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                          : "bg-slate-900 hover:bg-slate-800"
-                      } text-white rounded-xl h-12`}
-                    >
-                      Get Started
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    <Link href="/contact">
+                      <Button
+                        className={`w-full ${
+                          plan.popular
+                            ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                            : "bg-slate-900 hover:bg-slate-800"
+                        } text-white rounded-xl h-12 group-hover:scale-105 transition-transform`}
+                      >
+                        Get Started
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               )
@@ -212,108 +214,43 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Custom Solution Section */}
+      {/* FAQ Section */}
       <section className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute top-0 left-0 -mt-24 -ml-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
         <div className="absolute bottom-0 right-0 -mb-24 -mr-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Custom Solutions
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-slate-900">Need Something Custom?</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Have unique requirements? We create custom solutions tailored specifically to your business needs and
-              budget.
-            </p>
-
-            <div className="bg-white rounded-3xl p-12 shadow-lg border border-gray-100 mb-8">
-              <div className="grid md:grid-cols-3 gap-8 mb-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Sparkles className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-slate-900">Tailored Solutions</h3>
-                  <p className="text-gray-600">
-                    Custom features and functionality built specifically for your business
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Zap className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-slate-900">Flexible Pricing</h3>
-                  <p className="text-gray-600">Pricing based on your specific requirements and project scope</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Crown className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-slate-900">Premium Support</h3>
-                  <p className="text-gray-600">Dedicated project manager and priority support throughout development</p>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <p className="text-2xl font-bold text-slate-900 mb-4">Starting from $25,000</p>
-                <p className="text-gray-600 mb-8">Get a detailed quote based on your specific requirements</p>
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl px-8 py-6"
-                  >
-                    Request Custom Quote
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
 
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
               Frequently Asked Questions
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Pricing Questions?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Got Questions?</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Common questions about our pricing and what's included in each plan.
+              Quick answers to common questions about our pricing and services.
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-6">
             {[
               {
-                question: "Are there any hidden fees or monthly charges?",
+                question: "What's included in the one-time payment?",
                 answer:
-                  "No, our pricing is completely transparent. You pay once and own your website forever. The only ongoing costs might be hosting and domain renewal, which we can help you set up.",
-              },
-              {
-                question: "What happens after the free support period ends?",
-                answer:
-                  "After the free support period, you can continue using your website without any issues. If you need additional support or updates, we offer maintenance packages starting from $199/month.",
+                  "Our one-time payment includes the complete development of your website, design files, source code, and the specified support period. You own everything after delivery.",
               },
               {
                 question: "Can I upgrade my plan later?",
                 answer:
-                  "Yes! You can upgrade your plan at any time. We'll credit the amount you've already paid towards the higher plan and only charge the difference.",
+                  "Yes! You can upgrade your plan at any time. We'll prorate the difference and add the new features to your existing project.",
               },
               {
-                question: "Do you offer payment plans?",
+                question: "Do you provide hosting and domain?",
                 answer:
-                  "Yes, we offer flexible payment plans. You can pay 50% upfront and the remaining 50% upon project completion. For larger projects, we can discuss custom payment schedules.",
+                  "We can help you set up hosting and domain registration, but these are typically separate costs. We'll guide you through the process.",
               },
               {
-                question: "What if I'm not satisfied with the final result?",
+                question: "What happens after the support period ends?",
                 answer:
-                  "We offer unlimited revisions during the design phase and a 30-day satisfaction guarantee. If you're not completely happy, we'll work with you until you are, or provide a full refund.",
+                  "After the free support period, we offer ongoing maintenance packages. You can also choose to maintain the site yourself or work with another developer.",
               },
             ].map((faq, index) => (
               <div
@@ -343,18 +280,29 @@ export default function PricingPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/30 bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
               <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
-              Ready to Start?
+              Ready to Get Started?
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Still Have Questions?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Your Website</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Schedule a free consultation to discuss your project and get a personalized quote.
+              Ready to transform your digital presence? Contact us today and let&apos;s discuss your project requirements.
             </p>
-            <Link href="/contact">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
-                Schedule Free Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+                  Get Free Quote
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/portfolio">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
+                >
+                  View Our Work
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
