@@ -22,7 +22,7 @@ export default function CTAButton({
 }: CTAButtonProps) {
   const variants = {
     primary: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white",
-    secondary: "border-gray-700 text-white hover:text-white hover:bg-white/10",
+    secondary: "border-gray-700 text-white bg-white/10 hover:text-white hover:bg-black/10",
     white: "bg-white text-purple-600 hover:bg-gray-100"
   }
 
