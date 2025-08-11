@@ -158,9 +158,9 @@ export default function HomePage() {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-5xl mx-auto backdrop-blur-sm bg-white/10 rounded-3xl border border-white/20 p-12">
             <div className="grid md:grid-cols-4 gap-8 text-center">
-              <StatCard value="150+" label="Projects Completed" />
+              <StatCard value="7+" label="Projects Completed" />
               <StatCard value="98%" label="Client Satisfaction" />
-              <StatCard value="5+" label="Years Experience" />
+              <StatCard value="1+" label="Years Experience" />
               <StatCard value="24/7" label="Support Available" />
             </div>
           </div>
