@@ -28,8 +28,8 @@ export default function PortfolioCard({
         <Image
           src={imageSrc}
           alt={imageAlt}
-          width={400}
-          height={600}
+            width={400}
+            height={600}
           className={cn(
             "w-full object-cover group-hover:scale-105 transition-transform duration-500",
             height
