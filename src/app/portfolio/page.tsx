@@ -1,67 +1,11 @@
 import Image from "next/image"
-import { ExternalLink, Github, ArrowRight, ChevronRight } from "lucide-react"
-import Link from "next/link"
+import { ExternalLink, Github, ChevronRight } from "lucide-react"
 import { Badge, CTAButton, StatCard, BackgroundElements } from "@/components/ui"
 import { Button } from "@/components/ui/button"
+import { projects } from "@/lib/projects"
+import Link from "next/link"
 
 export default function PortfolioPage() {
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce solution with advanced filtering, payment integration, and admin dashboard.",
-      image: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React", "Next.js", "Stripe", "PostgreSQL"],
-      category: "E-Commerce",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "SaaS Dashboard",
-      description: "Comprehensive analytics dashboard for a SaaS platform with real-time data visualization.",
-      image: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React", "TypeScript", "Chart.js", "Node.js"],
-      category: "SaaS",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Healthcare App",
-      description: "Patient management system with appointment scheduling and medical records.",
-      image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["Next.js", "Prisma", "Tailwind", "Vercel"],
-      category: "Healthcare",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Real Estate Platform",
-      description: "Property listing platform with advanced search, virtual tours, and agent profiles.",
-      image: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React", "MongoDB", "Express", "AWS"],
-      category: "Real Estate",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Learning Management System",
-      description: "Online education platform with course creation, progress tracking, and video streaming.",
-      image: "https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["Next.js", "Supabase", "Video.js", "Stripe"],
-      category: "Education",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Restaurant Booking App",
-      description: "Table reservation system with menu display, online ordering, and payment processing.",
-      image: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["React", "Firebase", "PayPal", "PWA"],
-      category: "Restaurant",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-  ]
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -124,10 +68,13 @@ export default function PortfolioPage() {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="border-white text-white hover:bg-white hover:text-slate-900"
+                          className="border-white  hover:bg-white hover:text-slate-900"
+                          asChild
                         >
-                          <Github className="h-4 w-4 mr-2" />
-                          Code
+                          <Link href={`/portfolio/${project.slug}`}>
+                            <Github className="h-4 w-4 mr-2" />
+                            Case Study
+                          </Link>
                         </Button>
                       </div>
                     </div>
@@ -158,9 +105,12 @@ export default function PortfolioPage() {
                     <Button
                       variant="ghost"
                       className="text-purple-600 hover:text-purple-800 p-0 group-hover:translate-x-2 transition-transform"
+                      asChild
                     >
-                      View project details
-                      <ChevronRight className="ml-1 h-4 w-4" />
+                      <Link href={`/portfolio/${project.slug}`}>
+                        View project details
+                        <ChevronRight className="ml-1 h-4 w-4" />
+                      </Link>
                     </Button>
                   </div>
                 </div>

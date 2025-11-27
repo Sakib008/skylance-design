@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
+import { CheckCircle, ArrowLeft, ArrowRight } from "lucide-react"
 
 // Define the expertise data
 const expertiseData = {
@@ -290,7 +290,7 @@ export default function ExpertisePage({ params }: { params: { slug: string } }) 
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
+                  className="border-white  hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
                 >
                   View All Services
                 </Button>

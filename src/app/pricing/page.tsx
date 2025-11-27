@@ -1,14 +1,23 @@
-import { Button } from "@/components/ui/button"
-import { CheckCircle, X, ArrowRight, Star, Zap, Crown, Sparkles } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import {
+  CheckCircle,
+  X,
+  ArrowRight,
+  Star,
+  Zap,
+  Crown,
+  Sparkles,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function PricingPage() {
   const pricingPlans = [
     {
       name: "Starter",
-      price: "$399",
+      price: "₹15000",
       period: "one-time",
-      description: "Perfect for small businesses and startups looking to establish their online presence.",
+      description:
+        "Perfect for small businesses and startups looking to establish their online presence.",
       icon: Sparkles,
       color: "blue",
       popular: false,
@@ -22,13 +31,19 @@ export default function PricingPage() {
         "1 month free support",
         "Basic analytics setup",
       ],
-      notIncluded: ["E-commerce functionality", "Advanced animations", "Custom CMS", "Priority support"],
+      notIncluded: [
+        "E-commerce functionality",
+        "Advanced animations",
+        "Custom CMS",
+        "Priority support",
+      ],
     },
     {
       name: "Professional",
-      price: "$899",
+      price: "₹25000",
       period: "one-time",
-      description: "Ideal for growing businesses that need advanced features and functionality.",
+      description:
+        "Ideal for growing businesses that need advanced features and functionality.",
       icon: Zap,
       color: "purple",
       popular: true,
@@ -45,14 +60,16 @@ export default function PricingPage() {
         "Performance optimization",
         "Security features",
         "Email marketing setup",
+        "Custom backend development",
       ],
-      notIncluded: ["Custom backend development", "Third-party integrations"],
+      notIncluded: ["Third-party integrations"],
     },
     {
       name: "Enterprise",
-      price: "$1599",
+      price: "₹40000",
       period: "one-time",
-      description: "Complete solution for large businesses requiring custom development and integrations.",
+      description:
+        "Complete solution for large businesses requiring custom development and integrations.",
       icon: Crown,
       color: "blue",
       popular: false,
@@ -74,7 +91,7 @@ export default function PricingPage() {
       ],
       notIncluded: [],
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen ">
@@ -99,7 +116,8 @@ export default function PricingPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Transparent pricing with no hidden fees. Choose the plan that fits your business needs and budget.
+              Transparent pricing with no hidden fees. Choose the plan that fits
+              your business needs and budget.
             </p>
           </div>
         </div>
@@ -115,19 +133,27 @@ export default function PricingPage() {
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
               Pricing Plans
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Simple, Transparent Pricing</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              No monthly fees, no hidden costs. Pay once and own your website forever.
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl pb-4 mx-auto">
+              No monthly fees, no hidden costs. Pay once and own your website
+              forever.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {pricingPlans.map((plan, index) => {
-              const IconComponent = plan.icon
+              const IconComponent = plan.icon;
               return (
-                <div key={index} className={`relative group ${plan.popular ? "lg:scale-105 lg:-mt-8 lg:mb-8" : ""}`}>
+                <div
+                  key={index}
+                  className={`relative group ${
+                    plan.popular ? "lg:scale-105 lg:-mt-8 lg:mb-8" : ""
+                  }`}
+                >
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="absolute -top-2 right-28  z-10">
                       <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-medium flex items-center">
                         <Star className="h-4 w-4 mr-2" />
                         Most Popular
@@ -148,24 +174,30 @@ export default function PricingPage() {
                           plan.color === "purple"
                             ? "bg-gradient-to-br from-purple-500 to-purple-700"
                             : plan.color === "blue"
-                              ? "bg-gradient-to-br from-blue-500 to-blue-700"
-                              : "bg-gradient-to-br from-yellow-500 to-yellow-700"
+                            ? "bg-gradient-to-br from-blue-500 to-blue-700"
+                            : "bg-gradient-to-br from-yellow-500 to-yellow-700"
                         } group-hover:scale-110 transition-transform`}
                       >
                         <IconComponent className="h-8 w-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold mb-2 text-slate-900">{plan.name}</h3>
+                      <h3 className="text-2xl font-bold mb-2 text-slate-900">
+                        {plan.name}
+                      </h3>
                       <p className="text-gray-600 mb-6">{plan.description}</p>
                       <div className="mb-6">
-                        <span className="text-5xl font-bold text-slate-900">{plan.price}</span>
-                        <span className="text-gray-600 ml-2">{plan.period}</span>
+                        <span className="text-5xl font-bold text-slate-900">
+                          {plan.price}
+                        </span>
+                        <span className="text-gray-600 ml-2">
+                          {plan.period}
+                        </span>
                       </div>
                     </div>
 
                     <div className="space-y-4 mb-8">
                       <h4 className="font-semibold text-slate-900 flex items-center">
                         <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                        What's included:
+                        What&apos;s included:
                       </h4>
                       <ul className="space-y-3">
                         {plan.features.map((feature, featureIndex) => (
@@ -184,7 +216,10 @@ export default function PricingPage() {
                           </h4>
                           <ul className="space-y-2">
                             {plan.notIncluded.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start">
+                              <li
+                                key={featureIndex}
+                                className="flex items-start"
+                              >
                                 <X className="h-5 w-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
                                 <span className="text-gray-500">{feature}</span>
                               </li>
@@ -208,7 +243,7 @@ export default function PricingPage() {
                     </Link>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -224,7 +259,9 @@ export default function PricingPage() {
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
               Frequently Asked Questions
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Got Questions?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
+              Got Questions?
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Quick answers to common questions about our pricing and services.
             </p>
@@ -282,13 +319,19 @@ export default function PricingPage() {
               <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
               Ready to Get Started?
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Your Website</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
+              Let&apos;s Build Your Website
+            </h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence? Contact us today and let&apos;s discuss your project requirements.
+              Ready to transform your digital presence? Contact us today and
+              let&apos;s discuss your project requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl">
+                <Button
+                  size="lg"
+                  className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl"
+                >
                   Get Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -297,7 +340,7 @@ export default function PricingPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
+                  className="border-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
                 >
                   View Our Work
                 </Button>
@@ -307,5 +350,5 @@ export default function PricingPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

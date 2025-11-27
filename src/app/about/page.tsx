@@ -1,9 +1,7 @@
 import Image from "next/image"
-import { Users, Award, Target,  ArrowRight, Star } from "lucide-react"
-import { Heart } from 'lucide-react';
-import Link from "next/link";
+import { Users, Award, Target, Star } from "lucide-react"
+import { Heart } from 'lucide-react'
 import { Badge, CTAButton, BackgroundElements, FloatingElement } from "@/components/ui"
-import { Button } from "@/components/ui/button"
 
 export default function AboutPage() {
   return (
@@ -25,7 +23,7 @@ export default function AboutPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We're a passionate team of designers and developers dedicated to creating exceptional web applications
+              We&apos;re a passionate team of designers and developers dedicated to creating exceptional web applications
               that drive business success through innovation and creativity.
             </p>
           </div>
@@ -51,11 +49,11 @@ export default function AboutPage() {
                 </p>
                 <p>
                   What started as a small team of passionate creators has grown into a full-service web agency, but
-                  we've never lost sight of our core mission - delivering exceptional results through innovative design
+                  we&apos;ve never lost sight of our core mission - delivering exceptional results through innovative design
                   and cutting-edge development.
                 </p>
                 <p>
-                  Today, we're proud to have helped over 150 businesses transform their digital presence and achieve
+                  Today, we&apos;re proud to have helped over 150 businesses transform their digital presence and achieve
                   their goals through beautiful, functional web applications.
                 </p>
               </div>
@@ -148,7 +146,7 @@ export default function AboutPage() {
             </div>
             
 
-            <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+            <div className="group text-center p-8 bg-white  rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Heart className="h-8 w-8 text-white" />
               </div>
@@ -229,9 +227,9 @@ export default function AboutPage() {
             <Badge variant="white" icon={<span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>}>
               Ready to Collaborate?
             </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let's Work Together</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Work Together</h2>
             <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence? Let's discuss your project and see how we can help bring your
+              Ready to transform your digital presence? Let&apos;s discuss your project and see how we can help bring your
               vision to life.
             </p>
             <CTAButton href="/contact" variant="white" size="lg">

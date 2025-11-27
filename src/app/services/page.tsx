@@ -1,7 +1,5 @@
-import { CheckCircle, Code, Palette, Zap, Smartphone, Database, Shield, ArrowRight, ChevronRight } from "lucide-react"
-import Link from "next/link"
+import { Code, Palette, Zap, Smartphone, Database, Shield } from "lucide-react"
 import { Badge, CTAButton, ServiceCard, BackgroundElements } from "@/components/ui"
-import { Button } from "@/components/ui/button"
 
 export default function ServicesPage() {
   return (
@@ -12,7 +10,7 @@ export default function ServicesPage() {
 
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="default" icon={<span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>}>
+            <Badge className="mb-3" variant="default" icon={<span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>}>
               What We Offer
             </Badge>
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
@@ -23,7 +21,7 @@ export default function ServicesPage() {
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Comprehensive web solutions tailored to your business needs. From initial concept to final deployment,
-              we've got you covered.
+              we&apos;ve got you covered.
             </p>
           </div>
         </div>
@@ -128,7 +126,7 @@ export default function ServicesPage() {
             </div>
 
             <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-slate-900">Security & Maintenance</h3>
