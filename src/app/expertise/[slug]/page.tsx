@@ -106,8 +106,13 @@ const expertiseData = {
   },
 }
 
-export default function ExpertisePage({ params }: { params: { slug: string } }) {
-  const expertise = expertiseData[params.slug as keyof typeof expertiseData]
+interface PageProps {
+  params: { slug: string }
+}
+
+export default async function ExpertisePage({ params }:  PageProps) {
+  const { slug } = await params;
+  const expertise = expertiseData[slug as keyof typeof expertiseData];
 
   if (!expertise) {
     return (
