@@ -1,14 +1,10 @@
 "use client"
 
 import Image from "next/image";
-import Link from "next/link";
 import {
-  ArrowRight,
   Code,
   Palette,
   Zap,
-  CheckCircle,
-  ChevronRight,
   Star,
 } from "lucide-react";
 import {
@@ -21,13 +17,12 @@ import {
   BackgroundElements,
   FloatingElement
 } from "@/components/ui";
-import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section - Modern asymmetric design with overlapping elements */}
-      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
+      <section className="relative overflow-hidden md:px-12 bg-slate-900 py-20 lg:py-32">
         {/* Background elements */}
         <BackgroundElements variant="hero" />
 
@@ -106,7 +101,7 @@ export default function HomePage() {
       </section>
 
       {/* Services Overview - Modern card design with hover effects */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="py-24 md:px-12 bg-white relative overflow-hidden">
         {/* Background elements */}
         <BackgroundElements variant="section" />
 
@@ -119,7 +114,7 @@ export default function HomePage() {
             linkHref="/services"
           />
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
             <ServiceCard
               title="UI/UX Design"
               description="Beautiful, intuitive interfaces that users love. We create designs that not only look amazing but convert visitors into customers."
@@ -151,7 +146,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section - Glassmorphism effect */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
+      <section className="py-24 md:px-12 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
         {/* Background elements */}
         <BackgroundElements variant="hero" />
 
@@ -168,7 +163,7 @@ export default function HomePage() {
       </section>
 
       {/* Portfolio Preview - Modern masonry-style layout */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-24 md:px-12 bg-gray-50 relative overflow-hidden">
         {/* Background elements */}
         <BackgroundElements variant="section" />
 
@@ -188,8 +183,8 @@ export default function HomePage() {
               imageSrc="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800"
               imageAlt="E-commerce platform"
               technologies={["React", "Next.js", "Stripe"]}
-              height="h-80"
-              offset=""
+              height="h-96"
+              offset="lg:mb-12"
             />
             <PortfolioCard
               title="SaaS Dashboard"
@@ -206,15 +201,15 @@ export default function HomePage() {
               imageSrc="https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=800"
               imageAlt="Healthcare app"
               technologies={["Next.js", "Prisma", "Tailwind"]}
-              height="h-80"
-              offset=""
+              height="h-96"
+              offset="lg:mb-12"
             />
           </div>
         </div>
       </section>
 
       {/* CTA Section - Modern gradient with floating elements */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-24 md:px-12 relative overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
 
@@ -241,7 +236,7 @@ export default function HomePage() {
                 View Pricing
               </CTAButton>
             </div>
-
+                 `
             {/* Floating elements */}
             <FloatingElement
               icon={<div className="w-3 h-3 rounded-full bg-green-500"></div>}
