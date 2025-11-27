@@ -35,7 +35,7 @@ export default function SectionHeader({
       {linkText && linkHref && (
         <Link
           href={linkHref}
-          className="text-purple-600 flex items-center p-2.5 rounded-2xl hover:text-purple-800 hover:bg-purple-50 mt-6 md:mt-0"
+          className="text-purple-600 flex items-center p-2.5 rounded-2xl hover:text-purple-800 hover:bg-purple-100/80 mt-6 md:mt-0"
         >
           {linkText}
           <ChevronRight className="ml-1 h-4 w-4" />

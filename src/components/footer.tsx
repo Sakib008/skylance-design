@@ -40,8 +40,8 @@ export default function Footer() {
         </div>
 
         {/* Main Footer Content */}
-        <div className="py-16">
-          <div className="grid lg:grid-cols-5 gap-12">
+        <div className="py-16 lg:px-8">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
             {/* Company Info */}
             <div className="lg:col-span-2 space-y-6">
               <Link href="/" className="group flex items-center space-x-3">
@@ -100,21 +100,21 @@ export default function Footer() {
                 <ContactInfo 
                   icon={Mail} 
                   label="Email us" 
-                  value="hello@skylencedesign.com" 
+                  value="skylencedesigns@gmail.com" 
                 />
                 <ContactInfo 
                   icon={Phone} 
                   label="Call us" 
-                  value="+1 (555) 123-4567" 
+                  value="+91 9990111593"
                 />
                 <ContactInfo 
                   icon={MapPin} 
                   label="Visit us" 
                   value={
                     <>
-                      123 Design Street
+                      242, Hari Nagar Ashram
                       <br />
-                      Creative District, CD 12345
+                      New Delhi 110014
                     </>
                   } 
                 />

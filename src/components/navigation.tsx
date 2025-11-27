@@ -79,13 +79,13 @@ export default function Navigation() {
                   scrolled ? "text-purple-600" : "text-purple-300"
                 } -mt-1`}
               >
-                Design
+                Designs
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 {item.dropdown ? (
@@ -166,7 +166,7 @@ export default function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -188,7 +188,7 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-6 border-t border-gray-200/20 backdrop-blur-xl mt-4">
+          <div className="sm:hidden rounded-md py-6 border-t border-gray-200/20 bg-gradient-to-tr from-purple-900 to-pink-500 backdrop-blur-xl mt-4">
             <div className="flex flex-col space-y-2">
               {navigation.map((item) => (
                 <div key={item.name}>
@@ -196,9 +196,7 @@ export default function Navigation() {
                     href={item.href}
                     className={`block px-4 py-3 text-sm font-medium transition-all duration-300 rounded-xl ${
                       pathname === item.href
-                        ? "bg-gradient-to-r from-purple-600/10 to-pink-600/10 text-purple-600"
-                        : scrolled
-                        ? "text-gray-700 hover:bg-gray-100"
+                        ? "bg-gradient-to-r from-purple-600/10 to-pink-600/10 text-black"
                         : "text-white hover:bg-white/10"
                     }`}
                     onClick={closeMobileMenu}
@@ -211,7 +209,7 @@ export default function Navigation() {
                         <Link
                           key={dropdownItem.name}
                           href={dropdownItem.href}
-                          className="block px-4 py-2 text-sm text-gray-600 hover:text-purple-600 transition-colors"
+                          className="block px-4 py-2 text-sm text-slate-300 hover:text-purple-600 transition-colors"
                           onClick={closeMobileMenu}
                         >
                           {dropdownItem.name}
@@ -221,8 +219,9 @@ export default function Navigation() {
                   )}
                 </div>
               ))}
-              <Link href="/contact" onClick={closeMobileMenu}>
-                <Button className="mt-6 w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-2xl mx-4">
+              <Link href="/contact" onClick={closeMobileMenu} className="">
+                <Button className="mt-6 w-11/12 mx-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700
+                hover:to-pink-700 text-white rounded-2xl">
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
