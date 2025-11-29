@@ -107,10 +107,10 @@ const expertiseData = {
 }
 
 interface PageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
-export default async function ExpertisePage({ params }:  PageProps) {
+export default async function ExpertisePage({ params }: PageProps) {
   const { slug } = await params;
   const expertise = expertiseData[slug as keyof typeof expertiseData];
 
