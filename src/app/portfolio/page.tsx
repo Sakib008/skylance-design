@@ -131,9 +131,9 @@ export default function PortfolioPage() {
               <p className="text-gray-300">Real results from our portfolio projects</p>
             </div>
             <div className="grid md:grid-cols-4 gap-8 text-center">
-              <StatCard value="150+" label="Projects Delivered" />
+              <StatCard value="5+" label="Projects Delivered" />
               <StatCard value="98%" label="Client Satisfaction" />
-              <StatCard value="5+" label="Years Experience" />
+              <StatCard value="1+" label="Years Experience" />
               <StatCard value="24/7" label="Support Available" />
             </div>
           </div>

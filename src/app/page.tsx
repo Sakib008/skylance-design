@@ -1,12 +1,7 @@
-"use client"
+"use client";
 
 import Image from "next/image";
-import {
-  Code,
-  Palette,
-  Zap,
-  Star,
-} from "lucide-react";
+import { Code, Palette, Zap, Star } from "lucide-react";
 import {
   Badge,
   CTAButton,
@@ -15,7 +10,7 @@ import {
   PortfolioCard,
   SectionHeader,
   BackgroundElements,
-  FloatingElement
+  FloatingElement,
 } from "@/components/ui";
 
 export default function HomePage() {
@@ -29,7 +24,12 @@ export default function HomePage() {
         <div className="relative container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
-              <Badge variant="default" icon={<span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>}>
+              <Badge
+                variant="default"
+                icon={
+                  <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
+                }
+              >
                 Premium Web Agency
               </Badge>
               <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
@@ -48,7 +48,12 @@ export default function HomePage() {
                 <CTAButton href="/contact" variant="primary" size="lg">
                   Start Your Project
                 </CTAButton>
-                <CTAButton href="/portfolio" variant="secondary" size="lg" showArrow={false}>
+                <CTAButton
+                  href="/portfolio"
+                  variant="secondary"
+                  size="lg"
+                  showArrow={false}
+                >
                   View Our Work
                 </CTAButton>
               </div>
@@ -118,7 +123,11 @@ export default function HomePage() {
             <ServiceCard
               title="UI/UX Design"
               description="Beautiful, intuitive interfaces that users love. We create designs that not only look amazing but convert visitors into customers."
-              features={["User Research & Testing", "Wireframing & Prototyping", "Visual Design Systems"]}
+              features={[
+                "User Research & Testing",
+                "Wireframing & Prototyping",
+                "Visual Design Systems",
+              ]}
               icon={Palette}
               href="/expertise/ui-ux-design"
               color="purple"
@@ -127,7 +136,11 @@ export default function HomePage() {
             <ServiceCard
               title="Web Development"
               description="Robust, scalable web applications built with modern technologies. Fast, secure, and optimized for performance."
-              features={["React & Next.js", "Full-Stack Solutions", "API Integration"]}
+              features={[
+                "React & Next.js",
+                "Full-Stack Solutions",
+                "API Integration",
+              ]}
               icon={Code}
               href="/expertise/web-development"
               color="blue"
@@ -136,7 +149,11 @@ export default function HomePage() {
             <ServiceCard
               title="Optimization"
               description="Lightning-fast performance and SEO optimization. We ensure your web app ranks high and loads instantly."
-              features={["Performance Optimization", "SEO Implementation", "Analytics Setup"]}
+              features={[
+                "Performance Optimization",
+                "SEO Implementation",
+                "Analytics Setup",
+              ]}
               icon={Zap}
               href="/expertise/optimization"
               color="green"
@@ -180,7 +197,7 @@ export default function HomePage() {
             <PortfolioCard
               title="E-Commerce Platform"
               description="Modern shopping experience with advanced features"
-              imageSrc="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800"
+              imageSrc="https://drive.google.com/uc?id=1FNrKvlmGbb1XFZ1UGbSyrd9JCkOOfGKb"
               imageAlt="E-commerce platform"
               technologies={["React", "Next.js", "Stripe"]}
               height="h-96"
@@ -218,7 +235,12 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="white" icon={<span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>}>
+            <Badge
+              variant="white"
+              icon={
+                <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
+              }
+            >
               Let&apos;s Collaborate
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
@@ -229,22 +251,30 @@ export default function HomePage() {
               together. Get a free consultation and project estimate.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton href="/contact" variant="white" size="lg" showArrow={false}>
+              <CTAButton
+                href="/contact"
+                variant="white"
+                size="lg"
+                showArrow={false}
+              >
                 Get Free Consultation
               </CTAButton>
-              <CTAButton href="/pricing" variant="secondary" size="lg" showArrow={false}>
+              <CTAButton
+                href="/pricing"
+                variant="secondary"
+                size="lg"
+                showArrow={false}
+              >
                 View Pricing
               </CTAButton>
             </div>
-                 `
-            {/* Floating elements */}
+            `{/* Floating elements */}
             <FloatingElement
               icon={<div className="w-3 h-3 rounded-full bg-green-500"></div>}
               text="24/7 Support"
               position="bottom-left"
               className="absolute -bottom-10 left-1/4 transform -translate-x-1/2"
             />
-
             <FloatingElement
               icon={<Star className="h-4 w-4 text-yellow-400" />}
               text="Premium Service"
