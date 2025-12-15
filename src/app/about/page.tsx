@@ -1,283 +1,253 @@
+"use client";
+
 import Image from "next/image";
-import { Users, Award, Target, Star } from "lucide-react";
-import { Heart } from "lucide-react";
-import {
-  Badge,
-  CTAButton,
-  BackgroundElements,
-  FloatingElement,
-} from "@/components/ui";
+import { motion, Variants } from "framer-motion";
+import { Target, Users, Award, Heart, Sparkles } from "lucide-react";
+import { CTAButton, BackgroundElements } from "@/components/ui";
+
+// Animation Variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
-        {/* Background elements */}
+    <div className="min-h-screen bg-[#050505] text-slate-200">
+      {/* ---------------- 1. HERO SECTION (Personal & Cinematic) ---------------- */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
         <BackgroundElements variant="hero" />
 
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge
-              variant="default"
-              icon={
-                <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
-              }
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeInUp} className="inline-block mb-6">
+              <div className="inline-flex items-center px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md">
+                <Sparkles className="w-4 h-4 text-purple-400 mr-2" />
+                <span className="text-sm font-medium text-purple-200">
+                  The Story Behind the Screen
+                </span>
+              </div>
+            </motion.div>
+
+            <motion.h1
+              variants={fadeInUp}
+              className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight"
             >
-              Our Story
-            </Badge>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              About{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Skylence Designs
+              More than just <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                pixels & code.
               </span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              “I&apos;m a passionate web designer and developer dedicated to
-              creating custom websites that help your business grow through
-              smart, creative solutions.
-            </p>
-          </div>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeInUp}
+              className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed"
+            >
+              &quot;Skylence Designs isn&apos;t a factory. It&apos;s a studio
+              where I personally craft digital assets for business owners who
+              demand excellence.&quot;
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
+      {/* ---------------- 2. THE FOUNDER'S STORY (Split Layout) ---------------- */}
+      <section className="py-24 relative border-t border-white/5">
+        <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-                Founded in 2025
+            {/* Image Side - Styled like a Magazine Profile */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/20 group">
+                <Image
+                  src="https://drive.google.com/uc?export=view&id=1g7JtGt12PPd8xf628S3Ui6yPlDKwmiNE"
+                  alt="Mohammad Sakib"
+                  width={600}
+                  height={800}
+                  className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                  <h3 className="text-white font-bold text-lg">
+                    Mohammad Sakib
+                  </h3>
+                  <p className="text-purple-600 text-sm">
+                    Founder & Lead Developer
+                  </p>
+                </div>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-slate-900">
-                Our Journey
+
+              {/* Decorative Elements */}
+              <div className="absolute -top-10 -left-10 w-32 h-32 bg-purple-600/30 rounded-full blur-[50px]" />
+              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-pink-600/30 rounded-full blur-[50px]" />
+            </motion.div>
+
+            {/* Text Side */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                One Vision.{" "}
+                <span className="text-purple-400">Your Success.</span>
               </h2>
-              <div className="space-y-6 text-lg text-gray-600">
+
+              <div className="space-y-6 text-lg text-slate-400 leading-relaxed">
                 <p>
-                  Founded by me in 2025, Skylence Design started with a simple
-                  belief: every local business deserves a website that genuinely
-                  represents their vision and helps their growth.
+                  I started Skylence Designs in 2025 with a simple frustration:
+                  too many agencies treat clients like numbers on a spreadsheet.
+                  They use templates, outsource the work, and disappear after
+                  launch.
                 </p>
                 <p>
-                  Currently, Skylence Design is a one-person studio where I
-                  personally handle everything—from design and development to
-                  client communication—ensuring custom, high-quality websites
-                  without the noise of a big team.
+                  <strong className="text-white">
+                    I chose a different path.
+                  </strong>
                 </p>
                 <p>
-                  While Skylence began with big dreams to serve many businesses,
-                  right now I focus on delivering exceptional results, working
-                  closely with each client to create beautiful, functional
-                  websites that drive real business results.
+                  As a solo founder, I handle everything personally—from the
+                  first sketch to the final line of code. This ensures that the
+                  vision we discuss is exactly what gets built. No &quot;lost in
+                  translation,&quot; no middle management. Just direct,
+                  high-quality execution.
+                </p>
+                <p>
+                  While I plan to expand, my commitment remains the same:{" "}
+                  <span className="text-white underline decoration-pink-500/50 underline-offset-4">
+                    Quality over quantity.
+                  </span>
                 </p>
               </div>
 
-              <div className="mt-8 grid grid-cols-2 gap-6">
-                <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl">
-                  <div className="text-3xl font-bold text-purple-600 mb-1">
-                    5+
-                  </div>
-                  <div className="text-gray-600 text-sm">
-                    Projects Delivered
-                  </div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl">
-                  <div className="text-3xl font-bold text-blue-600 mb-1">
-                    98%
-                  </div>
-                  <div className="text-gray-600 text-sm">
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-6 pt-6">
+                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="text-3xl font-bold text-white mb-1">100%</div>
+                  <div className="text-sm text-slate-500">
                     Client Satisfaction
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                <Image
-                  src="https://images.pexels.com/photos/6340665/pexels-photo-6340665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="Our team at work"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-
-              {/* Floating elements */}
-              <FloatingElement
-                icon={<Star className="h-4 w-4 text-yellow-400" />}
-                text="Award Winning"
-                position="top-right"
-              />
-
-              <FloatingElement
-                icon={<div className="w-3 h-3 rounded-full bg-green-500"></div>}
-                text="5+ Projects"
-                position="bottom-left"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-0 left-0 -mt-24 -ml-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 -mb-24 -mr-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Our Core Values
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
-              What Drives Us
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              These principles guide my work and how I partner with clients like
-              you.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <Target className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">
-                Excellence
-              </h3>
-              <p className="text-gray-600">
-                We strive for perfection in every pixel, every line of code, and
-                every client interaction.
-              </p>
-            </div>
-
-            <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <Users className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">
-                Collaboration
-              </h3>
-              <p className="text-gray-600">
-                Your success is our success. We work closely with you as
-                partners, not just vendors.
-              </p>
-            </div>
-
-            <div className="group text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <Award className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">
-                Innovation
-              </h3>
-              <p className="text-gray-600">
-                We stay ahead of trends and technologies to deliver cutting-edge
-                solutions.
-              </p>
-            </div>
-
-            <div className="group text-center p-8 bg-white  rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                <Heart className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">Passion</h3>
-              <p className="text-gray-600">
-                We love what we do, and it shows in the quality and care we put
-                into every project.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Meet The Team
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
-              The Mind Behind Magic
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              The solo founder behind Skylence Design who makes the magic happen
-              for your business.
-            </p>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:justify-center md:space-x-12 gap-12">
-            {[
-              {
-                name: "Mohammad Sakib",
-                role: "Creative Director & Founder",
-                image:
-                  "https://drive.google.com/uc?export=view&id=1g7JtGt12PPd8xf628S3Ui6yPlDKwmiNE",
-                bio: "Passionate about creating exceptional user experiences and leading innovative design solutions.",
-              },
-            ].map((member, index) => (
-              <div key={index} className="group text-center">
-                <div className="relative mb-6">
-                  <div className="relative z-10 w-64 h-64 mx-auto rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="text-3xl font-bold text-white mb-1">
+                    Direct
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="text-sm text-slate-500">Founder Access</div>
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">
-                  {member.name}
-                </h3>
-                <p className="text-purple-600 font-medium mb-3">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 text-sm">{member.bio}</p>
               </div>
-            ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-        <BackgroundElements variant="hero" />
-
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge
-              variant="white"
-              icon={
-                <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
-              }
-            >
-              Ready to Collaborate?
-            </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
-              Let&apos;s Work Together
+      {/* ---------------- 3. CORE VALUES (Cards) ---------------- */}
+      <section className="py-24 relative overflow-hidden bg-[#08080C]">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              The Code We Live By
             </h2>
-            <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence? Let&apos;s discuss your
-              project and see how we can help bring your vision to life.
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              These aren&apos;t just buzzwords. They are the operating system of
+              this agency.
             </p>
-            <CTAButton href="/contact" variant="white" size="lg">
-              Start Your Project
-            </CTAButton>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ValueCard
+              icon={Target}
+              title="Precision"
+              desc="We don't guess. We measure, test, and refine until it's perfect."
+              color="purple"
+            />
+            <ValueCard
+              icon={Users}
+              title="Partnership"
+              desc="I work with you, not just for you. Your goals become my goals."
+              color="blue"
+            />
+            <ValueCard
+              icon={Award}
+              title="Excellence"
+              desc="Good enough is not enough. We aim for world-class in every pixel."
+              color="green"
+            />
+            <ValueCard
+              icon={Heart}
+              title="Passion"
+              desc="I love building the web. That energy goes directly into your project."
+              color="pink"
+            />
           </div>
         </div>
       </section>
+
+      {/* ---------------- 4. FINAL CTA ---------------- */}
+      <section className="py-32 relative overflow-hidden text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-900/20 pointer-events-none" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+            Enough about me. <br /> Let&apos;s talk about{" "}
+            <span className="text-purple-400">you.</span>
+          </h2>
+          <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+            You have a vision. I have the tools to build it. Let&apos;s combine
+            them.
+          </p>
+          <CTAButton href="/contact" variant="primary" size="lg">
+            Start the Conversation
+          </CTAButton>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+import { LucideIcon } from "lucide-react";
+
+// 1. Define valid colors as a specific type
+type ValidColor = "purple" | "blue" | "green" | "pink";
+
+interface ValueCardProps {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  color: ValidColor; 
+}
+
+function ValueCard({ icon: Icon, title, desc, color }: ValueCardProps) {
+  // 4. Record<ValidColor, string> ensures every color in your type is handled here
+  const colors: Record<ValidColor, string> = {
+    purple: "text-purple-400 group-hover:text-purple-300",
+    blue: "text-blue-400 group-hover:text-blue-300",
+    green: "text-emerald-400 group-hover:text-emerald-300",
+    pink: "text-pink-400 group-hover:text-pink-300",
+  };
+
+  return (
+    <div className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300">
+      <div className={`mb-6 p-4 rounded-2xl bg-white/5 w-fit ${colors[color]}`}>
+        {/* Now TypeScript knows Icon accepts className */}
+        <Icon className="w-8 h-8" />
+      </div>
+      <h3 className="text-xl font-bold text-white mb-4">{title}</h3>
+      <p className="text-slate-400 leading-relaxed text-sm">{desc}</p>
     </div>
   );
 }

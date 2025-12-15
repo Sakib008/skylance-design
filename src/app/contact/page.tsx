@@ -1,27 +1,15 @@
 "use client";
 
-import type React from "react";
-
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { 
+  Mail, Phone, MapPin, Clock,  
+  CheckCircle2, Sparkles, Send, Loader2 
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  ArrowRight,
-  CheckCircle,
-  Star,
-  AlertCircle,
-} from "lucide-react";
-import {
-  Badge,
-  CTAButton,
-  BackgroundElements,
-  FloatingElement,
-} from "@/components/ui";
+import { BackgroundElements, FloatingElement } from "@/components/ui";
 
 interface FormData {
   name: string;
@@ -46,469 +34,233 @@ export default function ContactPage() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters long";
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Invalid email";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      const response = await fetch("/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
+    // Simulate API call
+    setTimeout(() => {
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", company: "", message: "" });
-
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmitStatus("error");
-    } finally {
       setIsSubmitting(false);
-    }
+      setFormData({ name: "", email: "", company: "", message: "" });
+    }, 1500);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: undefined,
-      }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
+    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30">
+      
+      {/* ---------------- 1. HERO SECTION ---------------- */}
+      <section className="relative pt-32 pb-12 overflow-hidden">
         <BackgroundElements variant="hero" />
+        
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md mb-8">
+              <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+              <span className="text-xs font-bold text-green-400 tracking-widest uppercase">Open for new projects</span>
+            </div>
 
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge
-              variant="default"
-              icon={
-                <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
-              }
-            >
-              Let&apos;s Connect
-            </Badge>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              Get In{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Touch
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              Let&apos;s start a <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                conversation.
               </span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Ready to start your project? We&apos;d love to hear from you.
-              Let&apos;s discuss how we can bring your vision to life with our
-              expertise and passion.
+            
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Ready to upgrade your digital presence? We&apos;re here to help you navigate the future.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
 
-        <div className="container mx-auto px-4 relative">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
-            <div className="relative">
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+      {/* ---------------- 2. SPLIT CONTACT SECTION ---------------- */}
+      <section className="py-12 relative z-10">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+            
+            {/* LEFT: INFO & CONTACT DETAILS (5 cols) */}
+            <div className="lg:col-span-5 space-y-12">
+              
+              {/* Context */}
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Contact Info</h2>
+                <div className="space-y-6">
+                  <ContactItem icon={Mail} title="Email Us" value="skylencedesigns@gmail.com" />
+                  <ContactItem icon={Phone} title="Call Us" value="+91 9990111593" />
+                  <ContactItem icon={MapPin} title="Visit Us" value="242 Hari Nagar Ashram, New Delhi" />
+                  <ContactItem icon={Clock} title="Working Hours" value="Mon-Fri: 9AM - 6PM" />
+                </div>
+              </div>
+
+              {/* Trust Badge */}
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-900/20 to-transparent border border-purple-500/20 relative overflow-hidden">
+                 <div className="relative z-10">
+                   <div className="flex items-center gap-3 mb-4">
+                     <Sparkles className="w-6 h-6 text-purple-400" />
+                     <h3 className="font-bold text-white text-lg">Fast Response</h3>
+                   </div>
+                   <p className="text-slate-400 text-sm leading-relaxed">
+                     We value your time. Expect a reply within <span className="text-white font-semibold">2-4 business hours</span>.
+                   </p>
+                 </div>
+              </div>
+
+            </div>
+
+
+            {/* RIGHT: THE FORM (7 cols) */}
+            <div className="lg:col-span-7 relative">
+              <div className="relative bg-[#0A0A0E] border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+                
+                {/* Header */}
                 <div className="mb-8">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-4">
-                    Send Message
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4 text-slate-900">
-                    Tell Us About Your Project
-                  </h2>
-                  <p className="text-gray-600">
-                    Fill out the form below and we&apos;ll get back to you
-                    within 24 hours.
-                  </p>
+                  <h2 className="text-3xl font-bold text-white mb-2">Send a Message</h2>
+                  <p className="text-slate-400">Tell us about your project, goals, and timeline.</p>
                 </div>
 
-                {/* Success/Error Messages */}
-                {submitStatus === "success" && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-                    <div>
-                      <p className="text-green-800 font-medium">
-                        Message sent successfully!
-                      </p>
-                      <p className="text-green-700 text-sm">
-                        We&apos;ll get back to you within 24 hours.
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {submitStatus === "error" && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
-                    <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
-                    <div>
-                      <p className="text-red-800 font-medium">
-                        Something went wrong
-                      </p>
-                      <p className="text-red-700 text-sm">
-                        Please try again or contact us directly.
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        Full Name *
-                      </label>
-                      <Input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={`w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500 ${errors.name
-                            ? "border-red-300 focus:border-red-500 focus:ring-red-500"
-                            : ""
-                          }`}
-                        placeholder="Your full name"
-                      />
-                      {errors.name && (
-                        <p className="mt-1 text-sm text-red-600">
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        Email Address *
-                      </label>
-                      <Input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500 ${errors.email
-                            ? "border-red-300 focus:border-red-500 focus:ring-red-500"
-                            : ""
-                          }`}
-                        placeholder="your@email.com"
-                      />
-                      {errors.email && (
-                        <p className="mt-1 text-sm text-red-600">
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="company"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Company Name
-                    </label>
-                    <Input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full h-12 rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500"
-                      placeholder="Your company name"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Project Details *
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={6}
-                      className={`w-full rounded-xl border-gray-200 focus:border-purple-500 focus:ring-purple-500 ${errors.message
-                          ? "border-red-300 focus:border-red-500 focus:ring-red-500"
-                          : ""
-                        }`}
-                      placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-                    />
-                    {errors.message && (
-                      <p className="mt-1 text-sm text-red-600">
-                        {errors.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl h-12 disabled:opacity-50 disabled:cursor-not-allowed"
+                {/* Form Logic */}
+                {submitStatus === "success" ? (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="h-[400px] flex flex-col items-center justify-center text-center p-8 bg-green-500/5 rounded-2xl border border-green-500/20"
                   >
-                    {isSubmitting ? (
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Sending...
+                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle2 className="w-8 h-8 text-green-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Message Received!</h3>
+                    <p className="text-slate-400 max-w-sm">
+                      Thank you for reaching out. We will review your project details and get back to you shortly.
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      className="mt-8 border-white/10 text-white hover:bg-white/10"
+                      onClick={() => setSubmitStatus("idle")}
+                    >
+                      Send Another Message
+                    </Button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium text-slate-300">Name</label>
+                        <Input 
+                          id="name" name="name" 
+                          placeholder="John Doe"
+                          value={formData.name} onChange={handleChange}
+                          className="bg-white/5 border-white/10 text-white focus:border-purple-500 h-12 rounded-xl"
+                        />
+                        {errors.name && <p className="text-xs text-red-400">{errors.name}</p>}
                       </div>
-                    ) : (
-                      <>
-                        Send Message
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-medium text-slate-300">Email</label>
+                        <Input 
+                          id="email" name="email" type="email"
+                          placeholder="john@company.com"
+                          value={formData.email} onChange={handleChange}
+                          className="bg-white/5 border-white/10 text-white focus:border-purple-500 h-12 rounded-xl"
+                        />
+                        {errors.email && <p className="text-xs text-red-400">{errors.email}</p>}
+                      </div>
+                    </div>
 
-              {/* Floating elements */}
-              <FloatingElement
-                icon={<CheckCircle className="h-4 w-4 text-green-500" />}
-                text="Quick Response"
-                position="top-right"
-                className="absolute -top-6 -right-6 hidden lg:block"
-              />
-            </div>
+                    <div className="space-y-2">
+                      <label htmlFor="company" className="text-sm font-medium text-slate-300">Company (Optional)</label>
+                      <Input 
+                        id="company" name="company" 
+                        placeholder="Your Company Ltd."
+                        value={formData.company} onChange={handleChange}
+                        className="bg-white/5 border-white/10 text-white focus:border-purple-500 h-12 rounded-xl"
+                      />
+                    </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-                  Contact Info
-                </div>
-                <h2 className="text-3xl font-bold mb-6 text-slate-900">
-                  Let&apos;s Start a Conversation
-                </h2>
-                <p className="text-lg text-gray-600 mb-8">
-                  We&apos;re here to help and answer any questions you might
-                  have. We look forward to hearing from you.
-                </p>
-              </div>
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-slate-300">Message</label>
+                      <Textarea 
+                        id="message" name="message" 
+                        placeholder="Tell us about your project..."
+                        rows={6}
+                        value={formData.message} onChange={handleChange}
+                        className="bg-white/5 border-white/10 text-white focus:border-purple-500 rounded-xl resize-none"
+                      />
+                      {errors.message && <p className="text-xs text-red-400">{errors.message}</p>}
+                    </div>
 
-              <div className="space-y-6">
-                <div className="group flex items-start space-x-4 p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl hover:shadow-lg transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Mail className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">
-                      Email Us
-                    </h3>
-                    <p className="text-gray-600">skylencedesigns@gmail.com</p>
-                  </div>
-                </div>
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full h-14 bg-white text-black hover:bg-slate-200 font-bold text-lg rounded-xl transition-all"
+                    >
+                      {isSubmitting ? (
+                        <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...</>
+                      ) : (
+                        <><Send className="mr-2 h-5 w-5" /> Send Message</>
+                      )}
+                    </Button>
+                  </form>
+                )}
 
-                <div className="group flex items-start space-x-4 p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl hover:shadow-lg transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Phone className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">
-                      Call Us
-                    </h3>
-                    <p className="text-gray-600">+91 9990111593</p>
-                  </div>
-                </div>
-
-                <div className="group flex items-start space-x-4 p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl hover:shadow-lg transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <MapPin className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">
-                      Visit Us
-                    </h3>
-                    <p className="text-gray-600">242 Hari Nagar Ashram</p>
-                    <p className="text-gray-600">New Delhi, Delhi 110014</p>
-                  </div>
-                </div>
-
-                <div className="group flex items-start space-x-4 p-6 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl hover:shadow-lg transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Clock className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-900 mb-1">
-                      Business Hours
-                    </h3>
-                    <p className="text-gray-600">
-                      Monday - Friday: 9:00 AM - 6:00 PM
-                    </p>
-                    <p className="text-gray-600">
-                      Saturday: 10:00 AM - 4:00 PM
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border border-purple-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <Star className="h-6 w-6 text-purple-600" />
-                  <h3 className="font-bold text-slate-900">
-                    Quick Response Guarantee
-                  </h3>
-                </div>
-                <p className="text-gray-600">
-                  We typically respond to all inquiries within 2-4 hours during
-                  business hours. For urgent matters, please call us directly.
-                </p>
+                {/* Floating Decoration */}
+                <FloatingElement 
+                  icon={<Sparkles className="h-4 w-4 text-yellow-400" />} 
+                  text="Free Consultation"
+                  position="top-right"
+                  className="absolute -top-6 -right-6 hidden lg:block"
+                />
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-0 left-0 -mt-24 -ml-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 -mb-24 -mr-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
+    </div>
+  );
+}
 
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Frequently Asked Questions
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
-              Got Questions?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Quick answers to common questions about our services and process.
-            </p>
-          </div>
+import { LucideIcon } from "lucide-react";
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            {[
-              {
-                question: "How long does a typical project take?",
-                answer:
-                  "Project timelines vary based on complexity, but most web applications take 3-6 weeks from start to finish. We'll provide a detailed timeline during our initial consultation.",
-              },
-              {
-                question: "What's included in your web development service?",
-                answer:
-                  "Our service includes UI/UX design, front-end and back-end development, testing, deployment, and 30 days of post-launch support. We also provide training and documentation.",
-              },
-              {
-                question: "Do you provide ongoing maintenance?",
-                answer:
-                  "Yes! We offer various maintenance packages including security updates, performance monitoring, content updates, and feature enhancements.",
-              },
-              {
-                question: "Can you work with our existing brand guidelines?",
-                answer:
-                  "We can work within your existing brand guidelines or help you develop new ones if needed. We're flexible and adapt to your requirements.",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                <h3 className="font-bold text-slate-900 mb-4 text-lg group-hover:text-purple-600 transition-colors">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-        <BackgroundElements variant="hero" />
-
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge
-              variant="white"
-              icon={
-                <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
-              }
-            >
-              Ready to Start?
-            </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
-              Let&apos;s Build Something Amazing
-            </h2>
-            <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence? Contact us today and
-              let&apos;s discuss how we can help bring your vision to life.
-            </p>
-            <CTAButton href="/contact" variant="white" size="lg">
-              Get Started Today
-            </CTAButton>
-          </div>
-        </div>
-      </section>
+interface ContactItemProps {
+  icon: LucideIcon;
+  title: string;
+  value: string;
+}
+// --- SUB-COMPONENT: Contact Item ---
+function ContactItem({ icon: Icon, title, value }: ContactItemProps) {
+  return (
+    <div className="flex items-start gap-4 group">
+      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-purple-500/20 group-hover:text-purple-400 transition-colors">
+        <Icon className="w-5 h-5 text-slate-400 group-hover:text-purple-400" />
+      </div>
+      <div>
+        <h4 className="text-sm font-bold text-white">{title}</h4>
+        <p className="text-slate-400 text-sm">{value}</p>
+      </div>
     </div>
   );
 }

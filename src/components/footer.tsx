@@ -1,147 +1,191 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Sparkles, Heart } from "lucide-react"
-import { 
-  NewsletterForm, 
-  SocialIcon, 
-  LinkList, 
-  ContactInfo, 
-  BackgroundElements 
-} from "@/components/ui"
+import Link from "next/link";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Instagram,
+  Twitter,
+  Linkedin,
+  ArrowUpRight,
+  Heart,
+  LucideIcon,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Footer() {
-  return (
-    <footer className="relative bg-slate-900 text-white overflow-hidden">
-      {/* Background Elements */}
-      <BackgroundElements variant="footer" />
+  const currentYear = new Date().getFullYear();
 
-      <div className="relative container mx-auto px-4">
-        {/* Newsletter Section */}
-        <div className="py-16 border-b border-gray-800">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
-              Stay Updated
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Get the latest{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                design insights
+  const socialInfo: { icon: LucideIcon; url: string }[] = [
+    { icon: Twitter, url: "https://x.com/skylencedesigns" },
+    { icon: Instagram, url: "https://www.instagram.com/skylencedesigns/" },
+    {
+      icon: Linkedin,
+      url: "https://www.linkedin.com/company/skylencedesigns/",
+    },
+  ];
+
+  return (
+    <footer className="relative bg-[#050505] text-slate-200 overflow-hidden pt-24 border-t border-white/5">
+      {/* --- BACKGROUND GLOWS --- */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-pink-900/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* --- 1. TOP SECTION: CTA & NEWSLETTER --- */}
+        <div className="grid lg:grid-cols-2 gap-16 mb-24 items-start">
+          {/* Brand Promise */}
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              Ready to elevate your <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                digital presence?
               </span>
             </h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter for web design tips, industry trends, and exclusive updates on our latest
-              projects.
+            <p className="text-slate-400 max-w-md text-lg">
+              We craft premium digital experiences for forward-thinking brands.
+              Let&apos;s build something extraordinary together.
             </p>
-            
-            <NewsletterForm />
+          </div>
+
+          {/* Newsletter Glass Card */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl">
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Join our inner circle.
+            </h3>
+            <p className="text-slate-400 mb-6 text-sm">
+              Get exclusive design insights and agency updates.
+            </p>
+
+            <form className="flex gap-2">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="bg-black/20 border-white/10 text-white placeholder:text-slate-500 focus:border-purple-500 rounded-xl h-12"
+              />
+              <Button className="bg-white text-black hover:bg-slate-200 h-12 rounded-xl px-6 font-semibold transition-transform hover:scale-105">
+                Subscribe
+              </Button>
+            </form>
           </div>
         </div>
 
-        {/* Main Footer Content */}
-        <div className="py-16 lg:px-8">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
-            {/* Company Info */}
-            <div className="lg:col-span-2 space-y-6">
-              <Link href="/" className="group flex items-center space-x-3">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                    <Sparkles className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-2xl font-bold text-white">Skylence</span>
-                  <span className="text-sm font-medium text-purple-300 -mt-1">Design</span>
-                </div>
-              </Link>
-              <p className="text-gray-300 leading-relaxed max-w-md">
-                Creating exceptional web applications that drive business growth through innovative design and
-                cutting-edge development. Your vision, our expertise.
-              </p>
-              <div className="flex space-x-4">
-                <SocialIcon icon={Facebook} href="#" label="Facebook" />
-                <SocialIcon icon={Twitter} href="#" label="Twitter" />
-                <SocialIcon icon={Linkedin} href="#" label="LinkedIn" />
-                <SocialIcon icon={Instagram} href="#" label="Instagram" />
-              </div>
-            </div>
+        {/* --- 2. MIDDLE SECTION: LINKS --- */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-white/5 py-16">
+          {/* Column 1 */}
+          <div className="space-y-6">
+            <h4 className="text-white font-bold mb-4">Explore</h4>
+            <ul className="space-y-4">
+              {["Home", "About", "Services", "Portfolio", "Pricing"].map(
+                (item) => (
+                  <li key={item}>
+                    <Link
+                      href={`/${item.toLowerCase()}`}
+                      className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 group"
+                    >
+                      {item}
+                      <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-purple-400" />
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
 
-            {/* Quick Links */}
-            <LinkList 
-              title="Quick Links"
-              links={[
-                { name: "Home", href: "/" },
-                { name: "About Us", href: "/about" },
-                { name: "Services", href: "/services" },
-                { name: "Portfolio", href: "/portfolio" },
-                { name: "Pricing", href: "/pricing" },
-                { name: "Contact", href: "/contact" },
-              ]}
-            />
+          {/* Column 2 */}
+          <div className="space-y-6">
+            <h4 className="text-white font-bold mb-4">Services</h4>
+            <ul className="space-y-4">
+              {[
+                "UI/UX Design",
+                "Web Development",
+                "Optimization",
+                "Branding",
+              ].map((item) => (
+                <li key={item}>
+                  <Link
+                    href="#"
+                    className="text-slate-400 hover:text-white transition-colors"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Services */}
-            <LinkList 
-              title="Services"
-              links={[
-                { name: "UI/UX Design", href: "/expertise/ui-ux-design" },
-                { name: "Web Development", href: "/expertise/web-development" },
-                { name: "Performance Optimization", href: "/expertise/optimization" },
-                { name: "E-commerce Solutions", href: "/services" },
-                { name: "Maintenance & Support", href: "/services" },
-              ]}
-            />
+          {/* Column 3 */}
+          <div className="space-y-6">
+            <h4 className="text-white font-bold mb-4">Contact</h4>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-slate-400">
+                <MapPin className="w-5 h-5 text-purple-500 shrink-0 mt-1" />
+                <span>
+                  242, Hari Nagar Ashram
+                  <br />
+                  New Delhi 110014
+                </span>
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
+                <Mail className="w-5 h-5 text-purple-500 shrink-0" />
+                <a href="mailto:skylencedesigns@gmail.com">
+                  skylencedesigns@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors">
+                <Phone className="w-5 h-5 text-purple-500 shrink-0" />
+                <a href="tel:+919990111593">+91 9990111593</a>
+              </li>
+            </ul>
+          </div>
 
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <h4 className="text-lg font-semibold text-white">Get in Touch</h4>
-              <div className="space-y-4">
-                <ContactInfo 
-                  icon={Mail} 
-                  label="Email us" 
-                  value="skylencedesigns@gmail.com" 
-                />
-                <ContactInfo 
-                  icon={Phone} 
-                  label="Call us" 
-                  value="+91 9990111593"
-                />
-                <ContactInfo 
-                  icon={MapPin} 
-                  label="Visit us" 
-                  value={
-                    <>
-                      242, Hari Nagar Ashram
-                      <br />
-                      New Delhi 110014
-                    </>
-                  } 
-                />
-              </div>
+          {/* Column 4: Socials */}
+          <div className="space-y-6">
+            <h4 className="text-white font-bold mb-4">Socials</h4>
+            <div className="flex gap-4">
+              {socialInfo.map((Icon, i) => (
+                <a
+                  key={i}
+                  href={Icon.url}
+                  target="_blank"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-purple-600 hover:text-white hover:border-purple-500 transition-all duration-300"
+                >
+                  <Icon.icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="py-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2 text-gray-300">
-              <span>© {new Date().getFullYear()} Skylence Design. Made with</span>
-              <Heart className="h-4 w-4 text-red-500" />
-              <span>by Mohammad Sakib</span>
-            </div>
-            <div className="flex space-x-6 text-sm">
-              <Link href="#" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Terms of Service
-              </Link>
-            </div>
+        {/* --- 3. BOTTOM BAR --- */}
+        <div className="flex flex-col md:flex-row justify-between items-center py-8 border-t border-white/5 text-sm text-slate-500">
+          <div className="flex items-center gap-1 mb-4 md:mb-0">
+            <span>© {currentYear} Skylence Designs.</span>
+            <span className="hidden md:inline">|</span>
+            <span className="flex items-center gap-1">
+              Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" />{" "}
+              by Mohammad Sakib
+            </span>
           </div>
+          <div className="flex gap-6">
+            <Link href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+
+        {/* --- LARGE TYPOGRAPHY SIGNATURE (The "Big Finish") --- */}
+        <div className="pb-8 pt-4 overflow-hidden select-none pointer-events-none">
+          <h1 className="text-[12vw] leading-[0.8] font-bold text-center text-white/[0.03] tracking-tighter">
+            SKYLENCE
+          </h1>
         </div>
       </div>
     </footer>
-  )
+  );
 }

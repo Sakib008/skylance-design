@@ -1,354 +1,333 @@
-import { Button } from "@/components/ui/button";
-import {
-  CheckCircle,
-  X,
-  ArrowRight,
-  Star,
-  Zap,
-  Crown,
-  Sparkles,
-} from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Check, X, Zap, Crown, Sparkles, HelpCircle } from "lucide-react";
+import { CTAButton, BackgroundElements } from "@/components/ui";
+
+const pricingPlans = [
+  {
+    name: "Starter",
+    price: "₹15,000",
+    description:
+      "Perfect for small businesses establishing a digital footprint.",
+    icon: Sparkles,
+    color: "blue",
+    popular: false,
+    features: [
+      "5-Page Responsive Website",
+      "Basic SEO Setup",
+      "Contact Form Integration",
+      "1 Month Support",
+      "Mobile Optimization",
+    ],
+    limitations: ["No E-commerce", "Standard Design", "No CMS"],
+  },
+  {
+    name: "Growth",
+    price: "₹25,000",
+    description: "For businesses ready to scale and convert visitors.",
+    icon: Zap,
+    color: "purple",
+    popular: true,
+    features: [
+      "Up to 15 Pages",
+      "Advanced UI/UX Design",
+      "Custom Animations",
+      "CMS Integration",
+      "Advanced SEO & Analytics",
+      "3 Months Support",
+    ],
+    limitations: ["No Custom Backend"],
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    description: "Complex applications requiring custom architecture.",
+    icon: Crown,
+    color: "gold",
+    popular: false,
+    features: [
+      "Unlimited Pages",
+      "Custom Web App Development",
+      "E-commerce (100+ Products)",
+      "Database Integration",
+      "Priority 24/7 Support",
+      "Cloud Architecture (AWS)",
+    ],
+    limitations: [],
+  },
+];
+
+const faqs = [
+  {
+    q: "Do I own the code?",
+    a: "Yes. Once the final payment is made, you own 100% of the intellectual property, source code, and assets.",
+  },
+  {
+    q: "What is your payment structure?",
+    a: "We typically require a 50% deposit to start the project, with the remaining 50% due upon successful launch.",
+  },
+  {
+    q: "How long does a project take?",
+    a: "A standard website takes 2-4 weeks. Complex web applications can take 6-12 weeks depending on scope.",
+  },
+  {
+    q: "Do you provide hosting?",
+    a: "We help you set up hosting (Vercel/AWS) on your own accounts so you maintain full control. We don't gatekeep your site.",
+  },
+];
 
 export default function PricingPage() {
-  const pricingPlans = [
-    {
-      name: "Starter",
-      price: "₹15000",
-      period: "one-time",
-      description:
-        "Perfect for small businesses and startups looking to establish their online presence.",
-      icon: Sparkles,
-      color: "blue",
-      popular: false,
-      features: [
-        "5-page responsive website",
-        "Modern UI/UX design",
-        "Mobile optimization",
-        "Basic SEO setup",
-        "Contact form integration",
-        "Social media integration",
-        "1 month free support",
-        "Basic analytics setup",
-      ],
-      notIncluded: [
-        "E-commerce functionality",
-        "Advanced animations",
-        "Custom CMS",
-        "Priority support",
-      ],
-    },
-    {
-      name: "Professional",
-      price: "₹25000",
-      period: "one-time",
-      description:
-        "Ideal for growing businesses that need advanced features and functionality.",
-      icon: Zap,
-      color: "purple",
-      popular: true,
-      features: [
-        "Up to 15 pages",
-        "Advanced UI/UX design",
-        "Custom animations",
-        "E-commerce integration",
-        "CMS integration",
-        "Advanced SEO optimization",
-        "Payment gateway setup",
-        "3 months free support",
-        "Advanced analytics",
-        "Performance optimization",
-        "Security features",
-        "Email marketing setup",
-        "Custom backend development",
-      ],
-      notIncluded: ["Third-party integrations"],
-    },
-    {
-      name: "Enterprise",
-      price: "₹40000",
-      period: "one-time",
-      description:
-        "Complete solution for large businesses requiring custom development and integrations.",
-      icon: Crown,
-      color: "blue",
-      popular: false,
-      features: [
-        "Unlimited pages",
-        "Premium UI/UX design",
-        "Custom backend development",
-        "Advanced e-commerce features",
-        "Custom CMS development",
-        "Third-party integrations",
-        "Advanced security features",
-        "6 months free support",
-        "Priority support",
-        "Performance monitoring",
-        "Custom analytics dashboard",
-        "Staff training included",
-        "Maintenance plan included",
-        "Scalable architecture",
-      ],
-      notIncluded: [],
-    },
-  ];
+  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen ">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 rounded-full blur-3xl"></div>
-        </div>
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]"></div>
+    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30">
+      {/* ---------------- 1. HERO SECTION ---------------- */}
+      <section className="relative pt-32 pb-20 overflow-hidden text-center">
+        <BackgroundElements variant="hero" />
 
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>
-              Transparent Pricing
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
+              <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+              <span className="text-xs font-bold text-green-400 tracking-widest uppercase">
+                Transparent Pricing
+              </span>
             </div>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              Choose Your{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Perfect Plan
+
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              Invest in <br className="md:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                Performance.
               </span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Transparent pricing with no hidden fees. Choose the plan that fits
-              your business needs and budget.
+
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              No hidden fees. No hourly billing surprises. Just flat-rate
+              pricing for world-class digital assets.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Pricing Plans
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl pb-4 mx-auto">
-              No monthly fees, no hidden costs. Pay once and own your website
-              forever.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {/* ---------------- 2. PRICING CARDS ---------------- */}
+      <section className="py-12 relative z-10">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
             {pricingPlans.map((plan, index) => {
-              const IconComponent = plan.icon;
+              const Icon = plan.icon;
+              const isPopular = plan.popular;
+
               return (
-                <div
-                  key={index}
-                  className={`relative group ${
-                    plan.popular ? "lg:scale-105 lg:-mt-8 lg:mb-8" : ""
+                <motion.div
+                  key={plan.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onMouseEnter={() => setHoveredPlan(index)}
+                  onMouseLeave={() => setHoveredPlan(null)}
+                  className={`relative p-8 rounded-3xl border transition-all duration-300 ${
+                    isPopular
+                      ? "bg-white/10 border-purple-500/50 shadow-2xl shadow-purple-900/20 scale-105 z-10"
+                      : "bg-white/5 border-white/10 hover:border-white/20"
                   }`}
                 >
-                  {plan.popular && (
-                    <div className="absolute -top-2 right-28  z-10">
-                      <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-medium flex items-center">
-                        <Star className="h-4 w-4 mr-2" />
-                        Most Popular
-                      </div>
+                  {isPopular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-xs font-bold text-white uppercase tracking-wider">
+                      Most Popular
                     </div>
                   )}
 
                   <div
-                    className={`relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 ${
-                      plan.popular
-                        ? "border-purple-200 bg-gradient-to-b from-purple-50/50 to-white"
-                        : "border-gray-100 hover:border-purple-200"
-                    } h-full`}
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${
+                      isPopular
+                        ? "bg-purple-500 text-white"
+                        : "bg-white/10 text-slate-400"
+                    }`}
                   >
-                    <div className="text-center mb-8">
-                      <div
-                        className={`w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center ${
-                          plan.color === "purple"
-                            ? "bg-gradient-to-br from-purple-500 to-purple-700"
-                            : plan.color === "blue"
-                            ? "bg-gradient-to-br from-blue-500 to-blue-700"
-                            : "bg-gradient-to-br from-yellow-500 to-yellow-700"
-                        } group-hover:scale-110 transition-transform`}
-                      >
-                        <IconComponent className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2 text-slate-900">
-                        {plan.name}
-                      </h3>
-                      <p className="text-gray-600 mb-6">{plan.description}</p>
-                      <div className="mb-6">
-                        <span className="text-5xl font-bold text-slate-900">
-                          {plan.price}
-                        </span>
-                        <span className="text-gray-600 ml-2">
-                          {plan.period}
-                        </span>
-                      </div>
-                    </div>
+                    <Icon className="w-6 h-6" />
+                  </div>
 
-                    <div className="space-y-4 mb-8">
-                      <h4 className="font-semibold text-slate-900 flex items-center">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                        What&apos;s included:
-                      </h4>
-                      <ul className="space-y-3">
-                        {plan.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {plan.name}
+                  </h3>
+                  <p className="text-slate-400 text-sm mb-6 h-10">
+                    {plan.description}
+                  </p>
+
+                  <div className="mb-8">
+                    <span className="text-4xl font-bold text-white">
+                      {plan.price}
+                    </span>
+                    {plan.price !== "Custom" && (
+                      <span className="text-slate-500 ml-2">/ project</span>
+                    )}
+                  </div>
+
+                  <CTAButton
+                    href="/contact"
+                    variant={isPopular ? "primary" : "outline"}
+                    className="w-full justify-center mb-8"
+                  >
+                    Choose {plan.name}
+                  </CTAButton>
+
+                  <div className="space-y-4">
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                      Features
+                    </p>
+                    <ul className="space-y-3">
+                      {plan.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-start gap-3 text-sm text-slate-300"
+                        >
+                          <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {plan.limitations.length > 0 && (
+                      <ul className="space-y-3 pt-4 border-t border-white/5">
+                        {plan.limitations.map((limitation) => (
+                          <li
+                            key={limitation}
+                            className="flex items-start gap-3 text-sm text-slate-500"
+                          >
+                            <X className="w-4 h-4 text-slate-600 shrink-0 mt-0.5" />
+                            <span>{limitation}</span>
                           </li>
                         ))}
                       </ul>
-
-                      {plan.notIncluded.length > 0 && (
-                        <div className="pt-4">
-                          <h4 className="font-semibold text-slate-900 flex items-center mb-3">
-                            <X className="h-5 w-5 text-gray-400 mr-2" />
-                            Not included:
-                          </h4>
-                          <ul className="space-y-2">
-                            {plan.notIncluded.map((feature, featureIndex) => (
-                              <li
-                                key={featureIndex}
-                                className="flex items-start"
-                              >
-                                <X className="h-5 w-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
-                                <span className="text-gray-500">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-
-                    <Link href="/contact">
-                      <Button
-                        className={`w-full ${
-                          plan.popular
-                            ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                            : "bg-slate-900 hover:bg-slate-800"
-                        } text-white rounded-xl h-12 group-hover:scale-105 transition-transform`}
-                      >
-                        Get Started
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
+                    )}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-0 left-0 -mt-24 -ml-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 -mb-24 -mr-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative">
+      {/* ---------------- 3. COMPARISON TABLE (Glass) ---------------- */}
+      <section className="py-24 border-t border-white/5 bg-[#08080C]">
+        <div className="container mx-auto px-6 max-w-5xl">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Frequently Asked Questions
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">
-              Got Questions?
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Detailed Breakdown
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Quick answers to common questions about our pricing and services.
+            <p className="text-slate-400">
+              Compare features side-by-side to find your fit.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            {[
-              {
-                question: "What's included in the one-time payment?",
-                answer:
-                  "Our one-time payment includes the complete development of your website, design files, source code, and the specified support period. You own everything after delivery.",
-              },
-              {
-                question: "Can I upgrade my plan later?",
-                answer:
-                  "Yes! You can upgrade your plan at any time. We'll prorate the difference and add the new features to your existing project.",
-              },
-              {
-                question: "Do you provide hosting and domain?",
-                answer:
-                  "We can help you set up hosting and domain registration, but these are typically separate costs. We'll guide you through the process.",
-              },
-              {
-                question: "What happens after the support period ends?",
-                answer:
-                  "After the free support period, we offer ongoing maintenance packages. You can also choose to maintain the site yourself or work with another developer.",
-              },
-            ].map((faq, index) => (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="py-4 px-6 text-slate-500 font-medium">
+                    Feature
+                  </th>
+                  <th className="py-4 px-6 text-white font-bold text-center">
+                    Starter
+                  </th>
+                  <th className="py-4 px-6 text-purple-400 font-bold text-center">
+                    Growth
+                  </th>
+                  <th className="py-4 px-6 text-white font-bold text-center">
+                    Enterprise
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="text-sm">
+                {[
+                  ["Custom Design", true, true, true],
+                  ["Responsive Mobile", true, true, true],
+                  ["CMS (Admin Panel)", false, true, true],
+                  ["SEO Optimization", "Basic", "Advanced", "Enterprise"],
+                  ["Support Period", "1 Month", "3 Months", "6 Months"],
+                  [
+                    "Analytics",
+                    "Basic",
+                    "Google Analytics 4",
+                    "Custom Dashboard",
+                  ],
+                  ["Custom Backend", false, false, true],
+                ].map((row, i) => (
+                  <tr
+                    key={i}
+                    className="border-b border-white/5 hover:bg-white/[0.02]"
+                  >
+                    <td className="py-4 px-6 text-slate-300 font-medium">
+                      {row[0]}
+                    </td>
+                    <td className="py-4 px-6 text-center text-slate-400">
+                      {renderCell(row[1])}
+                    </td>
+                    <td className="py-4 px-6 text-center text-slate-400 bg-purple-500/5">
+                      {renderCell(row[2])}
+                    </td>
+                    <td className="py-4 px-6 text-center text-slate-400">
+                      {renderCell(row[3])}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- 4. FAQ SECTION ---------------- */}
+      <section className="py-24 relative">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Common Questions
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {faqs.map((faq, i) => (
               <div
-                key={index}
-                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                key={i}
+                className="group p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 transition-colors"
               >
-                <h3 className="font-bold text-slate-900 mb-4 text-lg group-hover:text-purple-600 transition-colors">
-                  {faq.question}
+                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-purple-500" />
+                  {faq.q}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                <p className="text-slate-400 leading-relaxed pl-7">{faq.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 bg-white rounded-full opacity-10 blur-3xl"></div>
-        </div>
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:30px_30px]"></div>
-
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/30 bg-white/10 text-white text-sm font-medium mb-6 backdrop-blur-sm">
-              <span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>
-              Ready to Get Started?
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
-              Let&apos;s Build Your Website
-            </h2>
-            <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Ready to transform your digital presence? Contact us today and
-              let&apos;s discuss your project requirements.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl"
-                >
-                  Get Free Quote
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/portfolio">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white hover:bg-white/20 text-lg px-8 py-6 rounded-xl"
-                >
-                  View Our Work
-                </Button>
-              </Link>
-            </div>
-          </div>
+      {/* ---------------- 5. FINAL CTA ---------------- */}
+      <section className="py-32 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent pointer-events-none" />
+        <div className="container mx-auto px-6 relative z-10">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+            Stop leaving money <br /> on the table.
+          </h2>
+          <CTAButton href="/contact" variant="white" size="lg">
+            Get Your Free Quote
+          </CTAButton>
         </div>
       </section>
     </div>
   );
+}
+
+// Helper to render table cells (Check, X, or Text)
+function renderCell(value: string | boolean) {
+  if (value === true)
+    return <Check className="w-5 h-5 text-green-500 mx-auto" />;
+  if (value === false) return <X className="w-5 h-5 text-slate-600 mx-auto" />;
+  return <span className="text-white">{value}</span>;
 }
