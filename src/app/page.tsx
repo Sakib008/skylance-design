@@ -1,263 +1,216 @@
 "use client";
 
-import Image from "next/image";
-import { Code, Palette, Zap, Rocket } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Palette, Code, Rocket } from "lucide-react";
 import {
   Badge,
   CTAButton,
   ServiceCard,
-  StatCard,
+  // StatCard,
   PortfolioCard,
-  BackgroundElements,
-  FloatingElement,
 } from "@/components/ui";
-
-// Animation Variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-};
+import NoiseOverlay from "@/components/ui/NoiseOverlay"; // Import the new component
+import VelocityScroll from "@/components/ui/VelocityScroll"; // Import the new component
 
 export default function HomePage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  // Spotlight Mouse Logic
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const updateMousePosition = (ev: MouseEvent) => {
+      setMousePosition({ x: ev.clientX, y: ev.clientY });
+    };
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#0B0B0F] text-slate-200 selection:bg-purple-500/30 selection:text-white">
-      {/* ---------------- HERO SECTION ---------------- */}
-      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-        <BackgroundElements variant="hero" />
+    <div ref={containerRef} className="min-h-screen bg-[#050505] text-slate-200 selection:bg-pink-500/30">
+      <NoiseOverlay />
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-              className="text-left"
-            >
-              <motion.div variants={fadeInUp}>
-                <Badge variant="purple">Sky Lance Designs • 2025</Badge>
-              </motion.div>
+      {/* ---------------- 1. CINEMATIC SPOTLIGHT HERO ---------------- */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        
+        {/* Dynamic Background Spotlight */}
+        <div 
+          className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(124, 58, 237, 0.15), transparent 80%)`,
+          }}
+        />
 
-              <motion.h1
-                variants={fadeInUp}
-                className="text-5xl lg:text-7xl font-bold mb-6 text-white tracking-tight leading-[1.1]"
-              >
-                We craft <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-gradient-x">
-                  digital luxury.
-                </span>
-              </motion.h1>
+        {/* Static Ambient Glows */}
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-pink-900/10 rounded-full blur-[120px]" />
 
-              <motion.p
-                variants={fadeInUp}
-                className="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed"
-              >
-                A premium design agency transforming dental clinics, studios,
-                and brands into modern digital experiences.
-              </motion.p>
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="inline-block"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl mb-8">
+              <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+              <span className="text-xs font-medium text-slate-300 uppercase tracking-wider">Accepting New Clients</span>
+            </div>
+          </motion.div>
 
-              <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-                <CTAButton href="/contact" variant="primary" size="lg">
-                  Start Your Project
-                </CTAButton>
-                <CTAButton href="/portfolio" variant="secondary" size="lg">
-                  View Our Work
-                </CTAButton>
-              </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white mb-8"
+          >
+            Digital <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-300% animate-gradient-x">
+              Alchemy.
+            </span>
+          </motion.h1>
 
-              {/* Minimal Social Proof */}
-              <motion.div
-                variants={fadeInUp}
-                className="mt-12 border-t border-white/10 pt-8"
-              >
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">
-                  Trusted by
-                </p>
-                <div className="flex gap-6 grayscale opacity-50 hover:opacity-100 transition-opacity duration-300">
-                  {/* Replace text with SVG logos for better premium feel */}
-                  <span className="text-xl font-bold text-white">
-                    The Pure Jam
-                  </span>
-                  <span className="text-xl font-bold text-white">
-                    Prime Fit
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+          >
+            We don&apos;t just build websites. We engineer <span className="text-white font-medium">premium digital assets</span> for brands ready to dominate their market.
+          </motion.p>
 
-            {/* Right Content - 3D Mockup */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative hidden lg:block"
-            >
-              {/* Floating Glass Cards */}
-              <FloatingElement
-                text="Live Project"
-                icon={
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                }
-                position="top-right"
-                className="top-10 -right-10 bg-slate-800/80 backdrop-blur-md border-slate-700"
-              />
-
-              <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/20 bg-slate-900">
-                {/* Use a darker, high-contrast dashboard image */}
-                <Image
-                  src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"
-                  alt="Dashboard Mockup"
-                  width={800}
-                  height={600}
-                  className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-500"
-                />
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0F] via-transparent to-transparent opacity-60"></div>
-              </div>
-            </motion.div>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center"
+          >
+            <CTAButton href="/contact" variant="primary" size="lg" className="w-full sm:w-auto shadow-[0_0_50px_-12px_rgba(168,85,247,0.5)]">
+              Start Your Transformation
+            </CTAButton>
+            <CTAButton href="/portfolio" variant="secondary" size="lg" className="w-full sm:w-auto">
+              Explore Portfolio
+            </CTAButton>
+          </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          <span className="text-[10px] uppercase tracking-widest text-slate-500">Scroll</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-purple-500 to-transparent"></div>
+        </motion.div>
       </section>
 
-      {/* ---------------- SERVICES SECTION ---------------- */}
+      {/* ---------------- 2. VELOCITY SCROLL BAR ---------------- */}
+      <VelocityScroll />
+
+      {/* ---------------- 3. IMMERSIVE SERVICES (STICKY LAYOUT) ---------------- */}
       <section className="py-32 relative">
-        <BackgroundElements variant="section" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Expertise beyond expectations.
-            </h2>
-            <p className="text-slate-400 text-lg">
-              We merge technical precision with aesthetic brilliance.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <ServiceCard
-              index={0}
-              title="UI/UX Design"
-              description="Interfaces that feel like second nature. We design systems, not just pages."
-              icon={Palette}
-              href="/services/design"
-            />
-            <ServiceCard
-              index={1}
-              title="Modern Development"
-              description="Built on Next.js and React. Blazing fast, SEO optimized, and scalable."
-              icon={Code}
-              href="/services/dev"
-            />
-            <ServiceCard
-              index={2}
-              title="Growth & SEO"
-              description="We ensure your brand isn't just seen, but remembered and ranked."
-              icon={Rocket}
-              href="/services/growth"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- STATS (Glass Bar) ---------------- */}
-      <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md p-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-              <StatCard
-                value="10+"
-                label="Active Clients"
-                className="text-purple-400"
+          <div className="flex flex-col lg:flex-row gap-16">
+            
+            {/* Sticky Title */}
+            <div className="lg:w-1/3 lg:sticky lg:top-32 h-fit">
+              <Badge variant="purple" className="mb-6">Our Expertise</Badge>
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Design that <br/> drives <span className="italic text-purple-400 font-serif">revenue.</span>
+              </h2>
+              <p className="text-slate-400 text-lg mb-8">
+                We combine aesthetic perfection with technical excellence to create websites that convert visitors into loyal clients.
+              </p>
+              <CTAButton href="/services" variant="outline">View All Services</CTAButton>
+            </div>
+
+            {/* Cards Column */}
+            <div className="lg:w-2/3 flex flex-col gap-8">
+              <ServiceCard 
+                index={0}
+                title="Premium UI/UX Design"
+                description="Custom interfaces tailored to your brand psychology. No templates, just pure strategy."
+                icon={Palette}
+                href="/expertise/ui-ux-design"
               />
-              <StatCard
-                value="100%"
-                label="Completion Rate"
-                className="text-pink-400"
+              <ServiceCard 
+                index={1}
+                title="Full-Stack Engineering"
+                description="Blazing fast Next.js applications deployed on AWS. Security and scalability included."
+                icon={Code}
+                href="/expertise/web-development"
               />
-              <StatCard value="24/7" label="Support" className="text-white" />
-              <StatCard
-                value="5.0"
-                label="Client Rating"
-                className="text-white"
+              <ServiceCard 
+                index={2}
+                title="Conversion Optimization"
+                description="We turn traffic into customers through data-driven design and psychological triggers."
+                icon={Rocket}
+                href="/expertise/optimization"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- PORTFOLIO SECTION ---------------- */}
-      <section className="py-32 bg-[#08080C] relative">
+      {/* ---------------- 4. FEATURED PROJECT (Large Reveal) ---------------- */}
+      <section className="py-32 bg-[#0A0A0E] relative overflow-hidden">
+        {/* Background Gradient Mesh */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+        
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-16">
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-2">
-                Selected Works
-              </h2>
-              <p className="text-slate-500">Curated digital experiences.</p>
-            </div>
-            <CTAButton
-              href="/portfolio"
-              variant="outline"
-              className="hidden md:flex"
-            >
-              View All
+            <h2 className="text-4xl md:text-6xl font-bold text-white">Selected Works</h2>
+            <div className="hidden md:block w-32 h-[1px] bg-white/20 mb-4"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            <PortfolioCard 
+              title="Bhanu Dental Clinic"
+              description="A complete digital rebrand resulting in 40% more bookings."
+              imageSrc="https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?auto=compress&cs=tinysrgb&w=800"
+              imageAlt="Dental Website"
+              technologies={["Next.js", "Framer Motion", "Tailwind"]}
+              className="lg:col-span-2 h-[600px] shadow-2xl shadow-purple-900/20"
+            />
+            <PortfolioCard 
+              title="Yoga Arts Life"
+              description="Minimalist studio platform."
+              imageSrc="https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&w=800"
+              imageAlt="Yoga"
+              technologies={["React", "Node.js"]}
+              className="h-[400px]"
+            />
+            <PortfolioCard 
+              title="Al Fushan"
+              description="High-traffic restaurant ordering system."
+              imageSrc="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=800"
+              imageAlt="Restaurant"
+              technologies={["Stripe", "MongoDB"]}
+              className="h-[400px]"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- 5. THE "LUXURY" FOOTER CALL ---------------- */}
+      <section className="py-40 relative flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent pointer-events-none" />
+        
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <h2 className="text-5xl md:text-8xl font-bold text-white mb-8 tracking-tighter">
+            Let&apos;s build <br/> the <span className="text-purple-400">extraordinary.</span>
+          </h2>
+          <div className="flex justify-center gap-6 mt-12">
+            <CTAButton href="/contact" variant="primary" size="lg" className="bg-white text-black hover:bg-slate-200 border-none px-12">
+              Book a Call
             </CTAButton>
           </div>
-
-          {/* Masonry-style Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <PortfolioCard
-              title="Bhanu Dental Clinic"
-              description="A calming, trustworthy digital presence for a premium dental practice."
-              imageSrc="https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?auto=compress&cs=tinysrgb&w=800"
-              imageAlt="Dental Clinic Website"
-              technologies={["Next.js", "Tailwind", "Framer"]}
-              className="md:row-span-2 h-[600px]"
-            />
-            <PortfolioCard
-              title="Yoga Arts Life"
-              description="Minimalist booking platform for a luxury yoga studio."
-              imageSrc="https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&w=800"
-              imageAlt="Yoga Studio"
-              technologies={["React", "Node.js"]}
-              className="h-[280px]"
-            />
-            <PortfolioCard
-              title="Al Fushan Restaurant"
-              description="High-performance food ordering system."
-              imageSrc="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=800"
-              imageAlt="Restaurant App"
-              technologies={["Next.js", "Stripe"]}
-              className="h-[280px]"
-            />
-          </div>
         </div>
       </section>
 
-      {/* ---------------- CTA / FOOTER PREVIEW ---------------- */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-black pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
-            Ready to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-              ascend?
-            </span>
-          </h2>
-          <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-            Book a free 15-minute consultation. No sales pressure, just
-            strategy.
-          </p>
-          <CTAButton href="/contact" variant="primary" size="lg">
-            Schedule Discovery Call
-          </CTAButton>
-        </div>
-      </section>
     </div>
   );
 }
