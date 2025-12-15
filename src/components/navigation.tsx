@@ -22,6 +22,7 @@ const navigation: NavigationItem[] = [
     dropdown: [
       { name: "UI/UX Design", href: "/expertise/ui-ux-design" },
       { name: "Web Development", href: "/expertise/web-development" },
+      { name: "Branding", href: "/expertise/branding" },
       { name: "Optimization", href: "/expertise/optimization" },
     ],
   },
@@ -97,14 +98,16 @@ export default function Navigation() {
                   <div key={item.name} className="relative group px-1">
                     {item.dropdown ? (
                       <div className="relative group/dropdown">
-                        <button 
+                        {/* CHANGE 1: Replaced <button> with <Link> */}
+                        <Link 
+                          href={item.href}
                           className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-full ${
                              isActive ? "text-white" : "text-slate-400 hover:text-white"
                           }`}
                         >
                           {item.name}
                           <ChevronDown className="w-3 h-3 transition-transform group-hover/dropdown:rotate-180" />
-                        </button>
+                        </Link>
 
                         {/* Dropdown Menu - Dark Glass */}
                         <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-300 transform group-hover/dropdown:translate-y-0 translate-y-2">
@@ -184,11 +187,11 @@ export default function Navigation() {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 bg-[#0B0B0F] md:hidden flex flex-col pt-32 px-6"
           >
-             {/* Background Gradients for Mobile */}
-             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 blur-[100px] pointer-events-none" />
-             <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink-600/20 blur-[100px] pointer-events-none" />
+              {/* Background Gradients for Mobile */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 blur-[100px] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink-600/20 blur-[100px] pointer-events-none" />
 
-             <div className="flex flex-col space-y-6">
+              <div className="flex flex-col space-y-6">
                {navigation.map((item, i) => (
                  <motion.div
                    key={item.name}
@@ -198,7 +201,15 @@ export default function Navigation() {
                  >
                    {item.dropdown ? (
                       <div className="space-y-4">
-                        <span className="text-2xl font-bold text-slate-500">{item.name}</span>
+                        {/* CHANGE 2: Replaced <span> with <Link> + onClick handler */}
+                        <Link 
+                           href={item.href}
+                           onClick={() => setIsOpen(false)}
+                           className="block text-2xl font-bold text-slate-500 hover:text-white transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                        
                         <div className="pl-4 border-l border-white/10 space-y-3">
                            {item.dropdown.map(sub => (
                              <Link 
