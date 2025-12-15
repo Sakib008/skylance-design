@@ -1,170 +1,165 @@
-import Image from "next/image"
-import { ExternalLink, Github, ChevronRight } from "lucide-react"
-import { Badge, CTAButton, StatCard, BackgroundElements } from "@/components/ui"
-import { Button } from "@/components/ui/button"
-import { projects } from "@/lib/projects"
-import Link from "next/link"
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { CTAButton, BackgroundElements } from "@/components/ui";
+import { projects } from "@/lib/projects";
+
+// Extract unique categories for the filter
+const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
 
 export default function PortfolioPage() {
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-32">
-        <BackgroundElements variant="hero" />
+  const [activeCategory, setActiveCategory] = useState("All");
 
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="default" icon={<span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2"></span>}>
-              Featured Work
-            </Badge>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-              Our{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Portfolio
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(p => p.category === activeCategory);
+
+  return (
+    <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30">
+      
+      {/* ---------------- 1. HERO SECTION ---------------- */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <BackgroundElements variant="hero" />
+        
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
+              <span className="flex h-2 w-2 rounded-full bg-purple-500 animate-pulse"></span>
+              <span className="text-xs font-bold text-purple-200 tracking-widest uppercase">Our Work</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              Selected <br className="md:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                Masterpieces
               </span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Explore our recent projects and see how we&apos;ve helped businesses transform their digital presence with
-              innovative web applications.
+            
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              We don&apos;t just build websites; we build digital assets that drive revenue.
+              Check out our latest deployments.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Portfolio Grid */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mt-24 -mr-24 w-64 h-64 bg-purple-100 rounded-full opacity-70 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -mb-24 -ml-24 w-64 h-64 bg-pink-100 rounded-full opacity-70 blur-3xl"></div>
 
-        <div className="container mx-auto px-4 relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-sm font-medium mb-6">
-              Recent Projects
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900">Work That Speaks</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Each project represents our commitment to excellence and innovation in web development.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {projects.map((project, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={800}
-                      height={600}
-                      className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-8">
-                      <div className="flex space-x-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <Button size="sm" className="bg-white text-slate-900 hover:bg-gray-100">
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="border-white  hover:bg-white hover:text-slate-900"
-                          asChild
-                        >
-                          <Link href={`/portfolio/${project.slug}`}>
-                            <Github className="h-4 w-4 mr-2" />
-                            Case Study
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-white/90 text-slate-900 rounded-full text-sm font-medium backdrop-blur-sm">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold mb-4 text-slate-900 group-hover:text-purple-600 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="px-3 py-1 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 rounded-full text-sm font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <Button
-                      variant="ghost"
-                      className="text-purple-600 hover:text-purple-800 p-0 group-hover:translate-x-2 transition-transform"
-                      asChild
-                    >
-                      <Link href={`/portfolio/${project.slug}`}>
-                        View project details
-                        <ChevronRight className="ml-1 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
+      {/* ---------------- 2. FILTER & GRID ---------------- */}
+      <section className="py-12 relative z-10 min-h-screen">
+        <div className="container mx-auto px-6">
+          
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-2 mb-16">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                  activeCategory === cat
+                    ? "bg-white text-black border-white"
+                    : "bg-white/5 text-slate-400 border-white/5 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
             ))}
           </div>
+
+          {/* Project Grid */}
+          <motion.div 
+            layout
+            className="grid md:grid-cols-2 gap-8 lg:gap-12"
+          >
+            <AnimatePresence>
+              {filteredProjects.map((project) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  key={project.slug}
+                  className="group relative"
+                >
+                  <Link href={`/portfolio/${project.slug}`} className="block">
+                    {/* Image Card */}
+                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 bg-white/5 mb-6">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+                        <div className="px-6 py-3 bg-white text-black rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2">
+                          View Case Study <ArrowUpRight className="w-4 h-4" />
+                        </div>
+                      </div>
+
+                      {/* Floating Tag */}
+                      <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-xs font-medium text-white">
+                        {project.category}
+                      </div>
+                    </div>
+
+                    {/* Text Content */}
+                    <div className="px-2">
+                       <div className="flex justify-between items-start mb-2">
+                          <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                            {project.title}
+                          </h3>
+                          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 group-hover:translate-x-0">
+                             {/* Mini tech stack icons could go here */}
+                          </div>
+                       </div>
+                       <p className="text-slate-400 line-clamp-2 mb-4">
+                         {project.description}
+                       </p>
+                       <div className="flex flex-wrap gap-2">
+                         {project.tags.slice(0, 3).map(tag => (
+                           <span key={tag} className="text-xs text-slate-500 border border-white/10 px-2 py-1 rounded-md">
+                             {tag}
+                           </span>
+                         ))}
+                       </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
-        <BackgroundElements variant="hero" />
 
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-5xl mx-auto backdrop-blur-sm bg-white/10 rounded-3xl border border-white/20 p-12">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Project Success Metrics</h2>
-              <p className="text-gray-300">Real results from our portfolio projects</p>
-            </div>
-            <div className="grid md:grid-cols-4 gap-8 text-center">
-              <StatCard value="5+" label="Projects Delivered" />
-              <StatCard value="98%" label="Client Satisfaction" />
-              <StatCard value="1+" label="Years Experience" />
-              <StatCard value="24/7" label="Support Available" />
-            </div>
-          </div>
+      {/* ---------------- 3. BOTTOM CTA ---------------- */}
+      <section className="py-32 relative overflow-hidden text-center border-t border-white/5 bg-[#08080C]">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-900/10 pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            Have a project in mind?
+          </h2>
+          <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+            We only take on 3 new clients per month to ensure quality. Secure your spot now.
+          </p>
+          <CTAButton href="/contact" variant="primary" size="lg">
+            Book Discovery Call
+          </CTAButton>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-        <BackgroundElements variant="hero" />
-
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="white" icon={<span className="flex h-2 w-2 rounded-full bg-white mr-2"></span>}>
-              Ready to Start?
-            </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Let&apos;s Build Your Next Project</h2>
-            <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
-              Inspired by our work? Let&apos;s discuss your project and create something amazing together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton href="/contact" variant="white" size="lg">
-                Start Your Project
-              </CTAButton>
-              <CTAButton href="/pricing" variant="secondary" size="lg" showArrow={false}>
-                View Pricing
-              </CTAButton>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
-  )
+  );
 }
