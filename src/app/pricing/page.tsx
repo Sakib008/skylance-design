@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, Zap, Crown, Sparkles, HelpCircle } from "lucide-react";
 import { CTAButton, BackgroundElements } from "@/components/ui";
@@ -79,7 +78,6 @@ const faqs = [
 ];
 
 export default function PricingPage() {
-  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30">
@@ -128,8 +126,6 @@ export default function PricingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  onMouseEnter={() => setHoveredPlan(index)}
-                  onMouseLeave={() => setHoveredPlan(null)}
                   className={`relative p-8 rounded-3xl border transition-all duration-300 ${
                     isPopular
                       ? "bg-white/10 border-purple-500/50 shadow-2xl shadow-purple-900/20 scale-105 z-10"
