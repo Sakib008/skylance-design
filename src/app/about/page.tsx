@@ -85,7 +85,7 @@ export default function AboutPage() {
                   <h3 className="text-white font-bold text-lg">
                     Mohammad Sakib
                   </h3>
-                  <p className="text-purple-300 text-sm">
+                  <p className="text-purple-600 text-sm">
                     Founder & Lead Developer
                   </p>
                 </div>
