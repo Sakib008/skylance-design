@@ -1,5 +1,8 @@
+"use client";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface PortfolioCardProps {
   title: string;
@@ -9,6 +12,7 @@ interface PortfolioCardProps {
   technologies: string[];
   // Remove "height" prop entirely. We will control height via className.
   className?: string;
+  caseLink?: string;
 }
 
 export default function PortfolioCard({
@@ -18,6 +22,7 @@ export default function PortfolioCard({
   imageAlt,
   technologies,
   className,
+  caseLink,
 }: PortfolioCardProps) {
   return (
     <div
@@ -39,7 +44,16 @@ export default function PortfolioCard({
 
       {/* Content Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-
+      {caseLink && (
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+          <Link
+            href={caseLink}
+            className="px-6 py-3 z-40 bg-white text-black rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2"
+          >
+            View Case Study <ArrowUpRight className="w-4 h-4" />
+          </Link>
+        </div>
+      )}
       <div className="absolute inset-0 flex flex-col justify-end p-8 z-10">
         <h3 className="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
           {title}
