@@ -1,8 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- 
   images: {
-    domains: ["images.pexels.com",'drive.google.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "drive.google.com",
+      },
+    ],
   },
 };
 
