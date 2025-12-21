@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface NavigationItem {
   name: string;
@@ -73,7 +74,7 @@ export default function Navigation() {
             <Link href="/" className="group flex items-center gap-3 z-50 relative">
               <div className="relative">
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-900/20 group-hover:scale-105 transition-transform duration-300">
-                  <Sparkles className="h-5 w-5 text-white fill-white/20" />
+                  <Image src="/logo.png" className="rounded-md" alt="Skylence Logo" width={40} height={40} />
                 </div>
                 {/* Glow behind logo */}
                 <div className="absolute inset-0 bg-purple-500 blur-lg opacity-40 group-hover:opacity-70 transition-opacity duration-300 -z-10" />

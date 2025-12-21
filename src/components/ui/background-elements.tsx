@@ -11,7 +11,8 @@ interface BackgroundVariant {
   showMeteors?: boolean; // New prop for shooting stars
 }
 
-const BASE_CONTAINER = "absolute inset-0 w-full h-full overflow-hidden pointer-events-none";
+const BASE_CONTAINER =
+  "absolute inset-0 w-full h-full overflow-hidden pointer-events-none";
 
 // --- Meteor Effect Component (Subtle shooting stars) ---
 const Meteors = () => {
@@ -45,37 +46,55 @@ const variants: Record<VariantName, BackgroundVariant> = {
     showMeteors: true,
     elements: [
       // 1. Primary "North Star" Glow
-      <div key="orb1" className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[100px] animate-pulse-slow" />,
-      
+      <div
+        key="orb1"
+        className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[100px] animate-pulse-slow"
+      />,
+
       // 2. Secondary "Pink Nebula"
-      <div key="orb2" className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[120px]" />,
-      
+      <div
+        key="orb2"
+        className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[120px]"
+      />,
+
       // 3. Central Subtle Highlight (Focuses eye on content)
-      <div key="orb3" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 rounded-full blur-[100px]" />
+      <div
+        key="orb3"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 rounded-full blur-[100px]"
+      />,
     ],
     // Finer, crisper grid with a radial fade mask
-    grid: "absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_70%,transparent_100%)]"
+    grid: "absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_70%,transparent_100%)]",
   },
-  
+
   section: {
     container: BASE_CONTAINER,
     showMeteors: false,
     elements: [
       // Asymmetric subtle glow for reading sections
-      <div key="sec1" className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px] opacity-60" />,
-      <div key="sec2" className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-[100px] opacity-40" />
+      <div
+        key="sec1"
+        className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px] opacity-60"
+      />,
+      <div
+        key="sec2"
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-[100px] opacity-40"
+      />,
     ],
-    grid: "absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_50%,transparent_100%)]"
+    grid: "absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_50%,transparent_100%)]",
   },
-  
+
   footer: {
     container: BASE_CONTAINER,
     showMeteors: true,
     elements: [
-      <div key="foot1" className="absolute bottom-0 w-full h-[400px] bg-gradient-to-t from-purple-900/20 via-[#050505] to-transparent" />
+      <div
+        key="foot1"
+        className="absolute bottom-0 w-full h-[400px] bg-gradient-to-t from-purple-900/20 via-[#050505] to-transparent"
+      />,
     ],
-    grid: "absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_80%_at_50%_100%,#000_80%,transparent_100%)]"
-  }
+    grid: "absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_80%_at_50%_100%,#000_80%,transparent_100%)]",
+  },
 };
 
 export default function BackgroundElements({
@@ -91,14 +110,14 @@ export default function BackgroundElements({
   return (
     <div className={cn(currentVariant.container, className)}>
       {/* 1. Base Dark Layer */}
-      <div className="absolute inset-0 bg-[#050505]" /> 
-      
+      <div className="absolute inset-0 bg-[#050505]" />
+
       {/* 2. Grid Layer */}
       {currentVariant.grid && <div className={currentVariant.grid} />}
-      
+
       {/* 3. Glowing Orbs */}
       {currentVariant.elements.map((element) => element)}
-      
+
       {/* 4. Optional Meteors */}
       {currentVariant.showMeteors && <Meteors />}
     </div>
