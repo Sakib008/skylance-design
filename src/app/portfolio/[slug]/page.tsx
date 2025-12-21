@@ -64,15 +64,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
               {project.description}
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <CTAButton
-                href={project.liveUrl}
-                variant="white"
-                className="flex items-center"
-              >
-                Visit Live Site <ExternalLink className="ml-2 h-4 w-4" />
-              </CTAButton>
-            </div>
+            {project.liveUrl && (
+              <div className="flex flex-wrap gap-4">
+                <CTAButton
+                  href={project.liveUrl}
+                  variant="white"
+                  className="flex items-center"
+                >
+                  Visit Live Site <ExternalLink className="ml-2 h-4 w-4" />
+                </CTAButton>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -81,13 +83,24 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <section className="relative z-10 -mt-10 mb-24 px-4">
         <div className="container mx-auto max-w-[1400px]">
           <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/20">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            {project.video ? (
+              <video
+                src={project.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="object-cover"
+              />
+            ) : (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            )}
           </div>
         </div>
       </section>

@@ -168,27 +168,30 @@ export default function HomePage() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             <PortfolioCard 
-              title="Bhanu Dental Clinic"
-              description="A complete digital rebrand resulting in 40% more bookings."
-              imageSrc="https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?auto=compress&cs=tinysrgb&w=800"
-              imageAlt="Dental Website"
-              technologies={["Next.js", "Framer Motion", "Tailwind"]}
+              title="Fitz Yoga Studio"
+              description="Hybrid booking and mentorship platform for a luxury yoga brand."
+              imageSrc="https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868125/Screenshot_663_fevv6o.png"
+              imageAlt="Yoga Studio"
+              caseLink="fitz-yoga-studio"
+              technologies={["Next.js", "Three.js", "GSAP"]}
               className="lg:col-span-2 h-[600px] shadow-2xl shadow-purple-900/20"
             />
             <PortfolioCard 
-              title="Yoga Arts Life"
-              description="Minimalist studio platform."
-              imageSrc="https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&w=800"
-              imageAlt="Yoga"
-              technologies={["React", "Node.js"]}
+              title="Golden Spoon Restaurant"
+              description="Mobile-first dining platform focusing on visual appetite appeal and rapid reservations."
+              imageSrc="https://res.cloudinary.com/de0bt7qfe/image/upload/v1766298745/Screenshot_684_yym23b.png"
+              imageAlt="Golden Spoon"
+              caseLink="Golden-spoon-restaurant"
+              technologies={["Next.js", "Tailwind CSS", "Framer Motion"]}
               className="h-[400px]"
             />
             <PortfolioCard 
-              title="Al Fushan"
-              description="High-traffic restaurant ordering system."
-              imageSrc="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=800"
-              imageAlt="Restaurant"
-              technologies={["Stripe", "MongoDB"]}
+              title="Dentelle"
+              description="Premium dental clinic website focused on trust, hygiene, and effortless appointment booking."
+              imageSrc="https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868127/Screenshot_683_rjibht.png"
+              imageAlt="Dentelle"
+              caseLink="dentelle-dental-clinic"
+              technologies={["Next.js", "Tailwind CSS", "Framer Motion", "SEO"]}
               className="h-[400px]"
             />
           </div>
