@@ -14,7 +14,7 @@ export interface Project {
     | "Hospitality"
     | "Food & Beverage"
     | "Fashion";
-  liveUrl: string;
+  liveUrl?: string;
   githubUrl: string;
   caseStudy: {
     challenge: string;
@@ -26,31 +26,33 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "bhanu-dental",
-    title: "Bhanu Dental Clinic",
+    slug: "dentelle-dental-clinic",
+    title: "Dentelle",
     description:
-      "A complete digital rebrand and booking system for a premium dental practice.",
+      "Premium dental clinic website focused on trust, hygiene, and effortless appointment booking.",
     image:
-      "https://images.pexels.com/photos/3845729/pexels-photo-3845729.jpeg?auto=compress&cs=tinysrgb&w=800",
-    tags: ["Next.js", "Tailwind", "Framer Motion"],
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868127/Screenshot_683_rjibht.png",
+    video:
+      "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766298966/dentelly_evf12o.mp4",
+    tags: ["Next.js", "Tailwind CSS", "Framer Motion", "SEO"],
     category: "Healthcare",
-    liveUrl: "#",
+    liveUrl: "dentelle.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
-        "The clinic's old site was non-responsive and lacked an appointment system, leading to high phone call volume and missed bookings.",
+        "The clinic needed a modern online presence that matched its luxury interior branding and made it easy for patients to understand treatments and book appointments without calling.",
       solution:
-        "We built a mobile-first site with a custom 'Request Appointment' flow that integrates directly with their front desk email, reducing friction for patients.",
+        "Designed a clean, luxury UI using golden yellow, lite pink, and sky blue accents, with clear service explanations, trust badges, and a prominent 'Book Now' workflow on both desktop and mobile.",
       outcomes: [
-        "40% increase in online inquiries",
-        "Reduced phone volume by 25%",
-        "Page load speed improved to 0.8s",
+        "Stronger premium brand perception for the clinic",
+        "Simplified booking journey for new and returning patients",
+        "Website structure optimized for future Google ranking and SEO",
       ],
       features: [
-        "Custom Appointment Form",
-        "Service Showcase",
-        "Testimonial Slider",
-        "Local SEO Optimization",
+        "One-click Appointment Booking",
+        "Service Explainers with Icons & Images",
+        "Doctor & Team Profiles",
+        "WhatsApp & Call CTAs on Every Page",
       ],
     },
   },
@@ -60,12 +62,12 @@ export const projects: Project[] = [
     description:
       "Hybrid booking and mentorship platform for a luxury yoga brand.",
     image:
-      "https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868125/Screenshot_663_fevv6o.png",
     tags: ["Next.js", "Three.js", "GSAP", "Stripe"],
     video:
       "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766120134/Fitz_yoga_studio_itz9qh.mp4",
     category: "Education",
-    liveUrl: "#",
+    // liveUrl: "#",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -85,35 +87,7 @@ export const projects: Project[] = [
       ],
     },
   },
-  {
-    slug: "oreliya-jewellery",
-    title: "Oreliya Jewellery",
-    description:
-      "Immersive e-commerce experience with 3D visualization for bespoke jewelry.",
-    image:
-      "https://images.pexels.com/photos/2735970/pexels-photo-2735970.jpeg?auto=compress&cs=tinysrgb&w=800",
-    tags: ["Next.js", "MongoDB", "Cloudinary", "AWS Lambda"],
-    category: "Fashion",
-    liveUrl: "#",
-    githubUrl: "#",
-    caseStudy: {
-      challenge:
-        "Customers were hesitant to purchase high-value custom jewelry online due to a lack of trust and the inability to visualize complex designs.",
-      solution:
-        "Built a trust-focused UI with high-resolution imagery and 3D rotating product models. Created a seamless 'Design Your Own' flow to capture custom orders.",
-      outcomes: [
-        "Increased consumer trust for high-ticket items",
-        "30% uplift in custom design inquiries",
-        "Zero-latency image loading",
-      ],
-      features: [
-        "3D Product Viewer",
-        "Custom Design Request Flow",
-        "Virtual Try-On Integration",
-        "Secure Payment Gateway",
-      ],
-    },
-  },
+
   {
     slug: "Golden-spoon-restaurant",
     title: "Golden Spoon Restaurant",
@@ -122,10 +96,10 @@ export const projects: Project[] = [
     video:
       "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766120142/Golden_Spoon_Restaurant_lsmhg7.mp4",
     image:
-      "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800",
-    tags: ["Next.js", "Tailwind CSS", "OpenTable API"],
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868133/Screenshot_666_zlmbvg.png",
+    tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
     category: "Hospitality",
-    liveUrl: "#",
+    liveUrl: "goldenspoon.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -153,10 +127,10 @@ export const projects: Project[] = [
     video:
       "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766120125/loom-video-vidburner.com_2_vp7dal.mp4",
     image:
-      "https://images.pexels.com/photos/48817/raspberries-fruit-berries-food-48817.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1766298745/Screenshot_684_yym23b.png",
     tags: ["Next.js", "React Three Fiber", "Shopify API"],
     category: "Food & Beverage",
-    liveUrl: "#",
+    liveUrl: "purejam.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -177,6 +151,66 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "bhanu-dental",
+    title: "Bhanu Dental Clinic",
+    description:
+      "A complete digital rebrand and booking system for a premium dental practice.",
+    image:
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868127/Screenshot_681_i9p9ou.png",
+    video:
+      "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766120126/madan_dental_n6n5uw.mp4",
+    tags: ["Next.js", "Tailwind", "Framer Motion"],
+    category: "Healthcare",
+    liveUrl: "madan.skylencedesigns.com",
+    githubUrl: "#",
+    caseStudy: {
+      challenge:
+        "The clinic's old site was non-responsive and lacked an appointment system, leading to high phone call volume and missed bookings.",
+      solution:
+        "We built a mobile-first site with a custom 'Request Appointment' flow that integrates directly with their front desk email, reducing friction for patients.",
+      outcomes: [
+        "40% increase in online inquiries",
+        "Reduced phone volume by 25%",
+        "Page load speed improved to 0.8s",
+      ],
+      features: [
+        "Custom Appointment Form",
+        "Service Showcase",
+        "Testimonial Slider",
+        "Local SEO Optimization",
+      ],
+    },
+  },
+  {
+    slug: "oreliya-jewellery",
+    title: "Oreliya Jewellery",
+    description:
+      "Immersive e-commerce experience with 3D visualization for bespoke jewelry.",
+    image:
+      "https://images.pexels.com/photos/2735970/pexels-photo-2735970.jpeg?auto=compress&cs=tinysrgb&w=800",
+    tags: ["Next.js", "MongoDB", "Cloudinary", "AWS Lambda"],
+    category: "Fashion",
+    // liveUrl: "#",
+    githubUrl: "#",
+    caseStudy: {
+      challenge:
+        "Customers were hesitant to purchase high-value custom jewelry online due to a lack of trust and the inability to visualize complex designs.",
+      solution:
+        "Built a trust-focused UI with high-resolution imagery and 3D rotating product models. Created a seamless 'Design Your Own' flow to capture custom orders.",
+      outcomes: [
+        "Increased consumer trust for high-ticket items",
+        "30% uplift in custom design inquiries",
+        "Zero-latency image loading",
+      ],
+      features: [
+        "3D Product Viewer",
+        "Custom Design Request Flow",
+        "Virtual Try-On Integration",
+        "Secure Payment Gateway",
+      ],
+    },
+  },
+  {
     slug: "carolina-boutique",
     title: "Carolina Boutique",
     description:
@@ -185,7 +219,7 @@ export const projects: Project[] = [
       "https://images.pexels.com/photos/102129/pexels-photo-102129.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Next.js", "Sanity CMS", "Stripe"],
     category: "Fashion",
-    liveUrl: "#",
+    // liveUrl: "#",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -205,35 +239,7 @@ export const projects: Project[] = [
       ],
     },
   },
-  {
-    slug: "dentelle-dental-clinic",
-    title: "Dentelle",
-    description:
-      "Premium dental clinic website focused on trust, hygiene, and effortless appointment booking.",
-    image:
-      "https://images.pexels.com/photos/6812551/pexels-photo-6812551.jpeg?auto=compress&cs=tinysrgb&w=800",
-    tags: ["Next.js", "Tailwind CSS", "Framer Motion", "SEO"],
-    category: "Healthcare",
-    liveUrl: "#",
-    githubUrl: "#",
-    caseStudy: {
-      challenge:
-        "The clinic needed a modern online presence that matched its luxury interior branding and made it easy for patients to understand treatments and book appointments without calling.",
-      solution:
-        "Designed a clean, luxury UI using golden yellow, lite pink, and sky blue accents, with clear service explanations, trust badges, and a prominent 'Book Now' workflow on both desktop and mobile.",
-      outcomes: [
-        "Stronger premium brand perception for the clinic",
-        "Simplified booking journey for new and returning patients",
-        "Website structure optimized for future Google ranking and SEO",
-      ],
-      features: [
-        "One-click Appointment Booking",
-        "Service Explainers with Icons & Images",
-        "Doctor & Team Profiles",
-        "WhatsApp & Call CTAs on Every Page",
-      ],
-    },
-  },
+
   {
     slug: "al-fushan",
     title: "Al Fushan Clothing",
