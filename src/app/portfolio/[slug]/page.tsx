@@ -38,7 +38,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
       <section className="relative pt-32 pb-20 overflow-hidden">
         <BackgroundElements variant="hero" />
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 isolate z-50">
           <Link
             href="/portfolio"
             className="inline-flex items-center text-slate-500 hover:text-white mb-8 transition-colors group"
@@ -66,13 +66,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
             {project.liveUrl && (
               <div className="flex flex-wrap gap-4">
-                <CTAButton
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href={project.liveUrl}
-                  variant="white"
-                  className="flex items-center"
+                  className="flex text-black bg-slate-200 border border-transparent shadow-xl rounded-2xl px-6 py-3 items-center font-semibold transition-all hover:scale-105 active:scale-95"
                 >
                   Visit Live Site <ExternalLink className="ml-2 h-4 w-4" />
-                </CTAButton>
+                </a>
               </div>
             )}
           </div>

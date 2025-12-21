@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766298966/dentelly_evf12o.mp4",
     tags: ["Next.js", "Tailwind CSS", "Framer Motion", "SEO"],
     category: "Healthcare",
-    liveUrl: "dentelle.skylencedesigns.com",
+    liveUrl: "https://dentelly.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -99,7 +99,7 @@ export const projects: Project[] = [
       "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868133/Screenshot_666_zlmbvg.png",
     tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
     category: "Hospitality",
-    liveUrl: "goldenspoon.skylencedesigns.com",
+    liveUrl: "https://goldenspoon.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -130,7 +130,7 @@ export const projects: Project[] = [
       "https://res.cloudinary.com/de0bt7qfe/image/upload/v1766298745/Screenshot_684_yym23b.png",
     tags: ["Next.js", "React Three Fiber", "Shopify API"],
     category: "Food & Beverage",
-    liveUrl: "purejam.skylencedesigns.com",
+    liveUrl: "https://purejam.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -150,37 +150,39 @@ export const projects: Project[] = [
       ],
     },
   },
-  {
-    slug: "bhanu-dental",
-    title: "Bhanu Dental Clinic",
+   {
+    slug: "smile-bright-dental-clinic",
+    title: "Smile Bright Dental Clinic",
     description:
-      "A complete digital rebrand and booking system for a premium dental practice.",
+      "Patient-focused website streamlining appointment booking and showcasing services with intuitive service pages, doctor bios, and prominent CTAs. Clean, mobile-responsive design using calming colors to build trust.",
     image:
-      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868127/Screenshot_681_i9p9ou.png",
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868128/Screenshot_668_wnytfm.png", // Replace with your actual screenshot
     video:
-      "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766120126/madan_dental_n6n5uw.mp4",
-    tags: ["Next.js", "Tailwind", "Framer Motion"],
+      "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766309187/Smile_Bright_clinic_zaaue2.mp4", // Replace with your actual video
+    tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design"],
     category: "Healthcare",
-    liveUrl: "madan.skylencedesigns.com",
+    liveUrl: "https://smilebright.skylencedesigns.com",
     githubUrl: "#",
     caseStudy: {
       challenge:
-        "The clinic's old site was non-responsive and lacked an appointment system, leading to high phone call volume and missed bookings.",
+        "Local dental clinic needed modern online presence to attract patients beyond walk-ins and compete with chain clinics.",
       solution:
-        "We built a mobile-first site with a custom 'Request Appointment' flow that integrates directly with their front desk email, reducing friction for patients.",
+        "Built clean UI with golden yellow + sky blue palette matching clinic branding. Added one-click booking, service explainers, and WhatsApp CTAs on every page for maximum conversions.",
       outcomes: [
-        "40% increase in online inquiries",
-        "Reduced phone volume by 25%",
-        "Page load speed improved to 0.8s",
+        "Increased patient inquiries through prominent booking CTAs",
+        "Mobile-first design improved accessibility for local patients",
+        "Trust-building elements (doctor profiles, testimonials) enhanced credibility",
       ],
       features: [
-        "Custom Appointment Form",
-        "Service Showcase",
-        "Testimonial Slider",
-        "Local SEO Optimization",
+        "One-Click Appointment Booking",
+        "Doctor & Team Profiles",
+        "WhatsApp Integration on Every Page",
+        "Mobile-First Responsive Design",
       ],
     },
   },
+
+ 
   {
     slug: "oreliya-jewellery",
     title: "Oreliya Jewellery",
@@ -207,6 +209,37 @@ export const projects: Project[] = [
         "Custom Design Request Flow",
         "Virtual Try-On Integration",
         "Secure Payment Gateway",
+      ],
+    },
+  },
+  {
+    slug: "bhanu-dental",
+    title: "Bhanu Dental Clinic",
+    description:
+      "A complete digital rebrand and booking system for a premium dental practice.",
+    image:
+      "https://res.cloudinary.com/de0bt7qfe/image/upload/v1765868127/Screenshot_681_i9p9ou.png",
+    video:
+      "https://res.cloudinary.com/de0bt7qfe/video/upload/v1766120126/madan_dental_n6n5uw.mp4",
+    tags: ["Next.js", "Tailwind", "Framer Motion"],
+    category: "Healthcare",
+    liveUrl: "https://madan.skylencedesigns.com",
+    githubUrl: "#",
+    caseStudy: {
+      challenge:
+        "The clinic's old site was non-responsive and lacked an appointment system, leading to high phone call volume and missed bookings.",
+      solution:
+        "We built a mobile-first site with a custom 'Request Appointment' flow that integrates directly with their front desk email, reducing friction for patients.",
+      outcomes: [
+        "40% increase in online inquiries",
+        "Reduced phone volume by 25%",
+        "Page load speed improved to 0.8s",
+      ],
+      features: [
+        "Custom Appointment Form",
+        "Service Showcase",
+        "Testimonial Slider",
+        "Local SEO Optimization",
       ],
     },
   },
@@ -249,7 +282,7 @@ export const projects: Project[] = [
       "https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["React", "Firebase", "Stripe"],
     category: "E-Commerce",
-    liveUrl: "#",
+    // liveUrl: "#",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -278,7 +311,7 @@ export const projects: Project[] = [
       "https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Next.js", "Sanity CMS", "Stripe"],
     category: "Education", // Fitting category for classes
-    liveUrl: "#",
+    // liveUrl: "#",
     githubUrl: "#",
     caseStudy: {
       challenge:
@@ -308,7 +341,7 @@ export const projects: Project[] = [
       "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["React", "TypeScript", "D3.js"],
     category: "SaaS",
-    liveUrl: "#",
+    // liveUrl: "#",
     githubUrl: "#",
     caseStudy: {
       challenge:
