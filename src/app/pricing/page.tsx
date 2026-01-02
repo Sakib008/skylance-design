@@ -1,84 +1,103 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, X, Zap, Crown, Sparkles, HelpCircle } from "lucide-react";
+import { Check, X, Zap, Crown, Store, HelpCircle, Palette, PenTool, Layers, ShieldCheck, Clock } from "lucide-react";
 import { CTAButton, BackgroundElements } from "@/components/ui";
 
 const pricingPlans = [
   {
-    name: "Starter",
+    name: "Launchpad",
     price: "₹15,000",
-    description:
-      "Perfect for small businesses establishing a digital footprint.",
-    icon: Sparkles,
+    description: "For local shops needing a digital business card.",
+    icon: Store,
     color: "blue",
     popular: false,
     features: [
-      "5-Page Responsive Website",
-      "Basic SEO Setup",
-      "Contact Form Integration",
-      "1 Month Support",
+      "5-Page Modular System",
+      "Google Business Profile Setup",
+      "WhatsApp Chat Integration",
+      "Stock Photography Access",
       "Mobile Optimization",
     ],
-    limitations: ["No E-commerce", "Standard Design", "No CMS"],
+    limitations: ["Standard Brand Assets", "No Custom Blog", "Basic SEO Only"],
   },
   {
-    name: "Growth",
-    price: "₹25,000",
-    description: "For businesses ready to scale and convert visitors.",
+    name: "Digital Twin",
+    price: "₹60,000",
+    description: "For established offline businesses scaling online.",
     icon: Zap,
     color: "purple",
     popular: true,
     features: [
-      "Up to 15 Pages",
-      "Advanced UI/UX Design",
-      "Custom Animations",
-      "CMS Integration",
-      "Advanced SEO & Analytics",
-      "3 Months Support",
+      "Custom 'Vibe-Match' Design",
+      "Local SEO Domination Setup",
+      "Photo Direction & Optimization",
+      "Trust & Review Migration",
+      "Speed Guarantee (< 2s)",
+      "CMS for Easy Updates",
     ],
-    limitations: ["No Custom Backend"],
+    limitations: ["Standard Brand Identity"],
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    description: "Complex applications requiring custom architecture.",
+    name: "Brand Authority",
+    price: "₹85,000",
+    description: "Complete identity overhaul to dominate the market.",
     icon: Crown,
     color: "gold",
     popular: false,
     features: [
-      "Unlimited Pages",
-      "Custom Web App Development",
-      "E-commerce (100+ Products)",
-      "Database Integration",
-      "Priority 24/7 Support",
-      "Cloud Architecture (AWS)",
+      "Full Brand Identity Kit (Logo+)",
+      "Strategic Sales Copywriting",
+      "Custom Next.js Architecture",
+      "Advanced Schema & Analytics",
+      "Blog & Content Strategy",
+      "Priority Support",
     ],
     limitations: [],
   },
 ];
 
+const addons = [
+  {
+    name: "Brand Identity Lite",
+    price: "₹8,000",
+    description: "Don't have a logo? We design a professional Logo + Color Palette + Typography Guide.",
+    icon: Palette,
+  },
+  {
+    name: "Content Writing Studio",
+    price: "₹5,000",
+    description: "We interview you for 30 mins and write 5 pages of professional, sales-focused copy.",
+    icon: PenTool,
+  },
+  {
+    name: "Social Media Launch",
+    price: "₹10,000",
+    description: "5 Custom Instagram Posts + Bio Optimization to announce your new website.",
+    icon: Layers,
+  },
+];
+
 const faqs = [
+  {
+    q: "Why don't you offer custom design in the Launchpad?",
+    a: "To keep the price accessible at ₹15,000, we use our premium 'Skylance Modular System'. It's faster and proven to convert. If you want 100% custom artistry, our Digital Twin package is perfect for you.",
+  },
+  {
+    q: "What is 'Vibe-Match' design?",
+    a: "For established offline brands, we don't just pick a theme. We visit your store (or analyze photos), pick colors from your interiors, and match your fonts to your signage so your online brand feels exactly like your offline shop.",
+  },
   {
     q: "Do I own the code?",
     a: "Yes. Once the final payment is made, you own 100% of the intellectual property, source code, and assets.",
   },
   {
     q: "What is your payment structure?",
-    a: "We typically require a 50% deposit to start the project, with the remaining 50% due upon successful launch.",
-  },
-  {
-    q: "How long does a project take?",
-    a: "A standard website takes 2-4 weeks. Complex web applications can take 6-12 weeks depending on scope.",
-  },
-  {
-    q: "Do you provide hosting?",
-    a: "We help you set up hosting (Vercel/AWS) on your own accounts so you maintain full control. We don't gatekeep your site.",
+    a: "50% upfront to reserve your slot in our development calendar. 50% upon successful launch.",
   },
 ];
 
 export default function PricingPage() {
-
   return (
     <div className="min-h-screen bg-[#050505] text-slate-200 selection:bg-purple-500/30">
       {/* ---------------- 1. HERO SECTION ---------------- */}
@@ -90,23 +109,26 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
-              <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-              <span className="text-xs font-bold text-green-400 tracking-widest uppercase">
-                Transparent Pricing
+            {/* SCARCITY BANNER - The Final Touch */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-md mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-xs font-bold text-purple-200 tracking-wide uppercase">
+                Now Booking for February 2026
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-              Invest in <br className="md:hidden" />
+              Stop Buying Websites. <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-                Performance.
+                Buy Revenue.
               </span>
             </h1>
 
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              No hidden fees. No hourly billing surprises. Just flat-rate
-              pricing for world-class digital assets.
+              We don&apos;t sell code. We sell digital assets that build trust, authority, and sales for your business.
             </p>
           </motion.div>
         </div>
@@ -159,9 +181,7 @@ export default function PricingPage() {
                     <span className="text-4xl font-bold text-white">
                       {plan.price}
                     </span>
-                    {plan.price !== "Custom" && (
-                      <span className="text-slate-500 ml-2">/ project</span>
-                    )}
+                    <span className="text-slate-500 ml-2">/ project</span>
                   </div>
 
                   <CTAButton
@@ -169,12 +189,12 @@ export default function PricingPage() {
                     variant={isPopular ? "primary" : "outline"}
                     className="w-full justify-center mb-8"
                   >
-                    Choose {plan.name}
+                    Get {plan.name}
                   </CTAButton>
 
                   <div className="space-y-4">
                     <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                      Features
+                      What You Get
                     </p>
                     <ul className="space-y-3">
                       {plan.features.map((feature) => (
@@ -209,77 +229,86 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* ---------------- 3. COMPARISON TABLE (Glass) ---------------- */}
-      <section className="py-24 border-t border-white/5 bg-[#08080C]">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Detailed Breakdown
-            </h2>
-            <p className="text-slate-400">
-              Compare features side-by-side to find your fit.
-            </p>
+      {/* ---------------- 3. POWER-UPS SECTION (ADD-ONS) ---------------- */}
+      <section className="py-12 relative z-10 bg-[#08080C] border-t border-white/5">
+         <div className="container mx-auto px-6 max-w-5xl">
+            <div className="text-center mb-12">
+               <h2 className="text-3xl font-bold text-white mb-4">Customize Your Build</h2>
+               <p className="text-slate-400">Add power-ups to any package to perfectly fit your needs.</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+               {addons.map((addon, i) => (
+                  <motion.div 
+                     key={addon.name}
+                     initial={{ opacity: 0, y: 10 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     transition={{ delay: i * 0.1 }}
+                     className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-colors"
+                  >
+                     <div className="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4">
+                        <addon.icon className="w-5 h-5" />
+                     </div>
+                     <h3 className="text-lg font-bold text-white mb-1">{addon.name}</h3>
+                     <p className="text-2xl font-bold text-slate-200 mb-3">{addon.price}</p>
+                     <p className="text-sm text-slate-400 leading-relaxed">{addon.description}</p>
+                  </motion.div>
+               ))}
+            </div>
+         </div>
+      </section>
+
+      {/* ---------------- 4. MAINTENANCE PROTOCOLS (New Section) ---------------- */}
+      <section className="py-24 relative bg-[#050505] border-t border-white/5">
+        <div className="container mx-auto px-6 max-w-4xl">
+           <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-white mb-4">Peace of Mind Protocols</h2>
+              <p className="text-slate-400">Protect your investment with our care plans.</p>
+           </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Basic Plan */}
+            <div className="p-8 rounded-2xl border border-white/10 bg-white/[0.02]">
+              <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-3">
+                    <ShieldCheck className="w-6 h-6 text-blue-400"/>
+                    <h4 className="text-xl font-bold text-white">The Guard</h4>
+                </div>
+                <span className="text-blue-400 font-bold text-xl">₹1,000<span className="text-sm text-slate-500 font-normal">/mo</span></span>
+              </div>
+              <ul className="space-y-4 text-sm text-slate-300">
+                <li className="flex gap-3"><Check className="w-4 h-4 text-blue-400 mt-0.5"/> Hosting & SSL Fees Included</li>
+                <li className="flex gap-3"><Check className="w-4 h-4 text-blue-400 mt-0.5"/> Monthly Code Backups</li>
+                <li className="flex gap-3"><Check className="w-4 h-4 text-blue-400 mt-0.5"/> 24/7 Uptime Monitoring</li>
+              </ul>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="p-8 rounded-2xl border border-purple-500/30 bg-purple-900/5">
+              <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-3">
+                    <Clock className="w-6 h-6 text-purple-400"/>
+                    <h4 className="text-xl font-bold text-white">The Concierge</h4>
+                </div>
+                <span className="text-purple-400 font-bold text-xl">₹3,000<span className="text-sm text-slate-500 font-normal">/mo</span></span>
+              </div>
+              <ul className="space-y-4 text-sm text-slate-300">
+                <li className="flex gap-3"><Check className="w-4 h-4 text-purple-400 mt-0.5"/> <strong>Everything in Guard</strong></li>
+                <li className="flex gap-3"><Check className="w-4 h-4 text-purple-400 mt-0.5"/> 2 Hours of Content Updates/mo</li>
+                <li className="flex gap-3"><Check className="w-4 h-4 text-purple-400 mt-0.5"/> Priority Phone Support</li>
+              </ul>
+            </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="py-4 px-6 text-slate-500 font-medium">
-                    Feature
-                  </th>
-                  <th className="py-4 px-6 text-white font-bold text-center">
-                    Starter
-                  </th>
-                  <th className="py-4 px-6 text-purple-400 font-bold text-center">
-                    Growth
-                  </th>
-                  <th className="py-4 px-6 text-white font-bold text-center">
-                    Enterprise
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="text-sm">
-                {[
-                  ["Custom Design", true, true, true],
-                  ["Responsive Mobile", true, true, true],
-                  ["CMS (Admin Panel)", false, true, true],
-                  ["SEO Optimization", "Basic", "Advanced", "Enterprise"],
-                  ["Support Period", "1 Month", "3 Months", "6 Months"],
-                  [
-                    "Analytics",
-                    "Basic",
-                    "Google Analytics 4",
-                    "Custom Dashboard",
-                  ],
-                  ["Custom Backend", false, false, true],
-                ].map((row, i) => (
-                  <tr
-                    key={i}
-                    className="border-b border-white/5 hover:bg-white/[0.02]"
-                  >
-                    <td className="py-4 px-6 text-slate-300 font-medium">
-                      {row[0]}
-                    </td>
-                    <td className="py-4 px-6 text-center text-slate-400">
-                      {renderCell(row[1])}
-                    </td>
-                    <td className="py-4 px-6 text-center text-slate-400 bg-purple-500/5">
-                      {renderCell(row[2])}
-                    </td>
-                    <td className="py-4 px-6 text-center text-slate-400">
-                      {renderCell(row[3])}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <p className="mt-8 text-center text-sm text-slate-500">
+            *SEO and Social Media Management packages are customized based on your competition and goals. 
+            <a href="/contact" className="text-purple-400 hover:text-purple-300 underline ml-1 cursor-pointer">Ask for a Growth Audit.</a>
+          </p>
         </div>
       </section>
 
-      {/* ---------------- 4. FAQ SECTION ---------------- */}
-      <section className="py-24 relative">
+      {/* ---------------- 5. FAQ SECTION ---------------- */}
+      <section className="py-24 relative border-t border-white/5">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-white mb-4">
@@ -304,26 +333,19 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* ---------------- 5. FINAL CTA ---------------- */}
+      {/* ---------------- 6. FINAL CTA ---------------- */}
       <section className="py-32 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
-            Stop leaving money <br /> on the table.
+            Your competitors are already online. <br />
+            <span className="text-purple-400">Catch up today.</span>
           </h2>
           <CTAButton href="/contact" variant="white" size="lg">
-            Get Your Free Quote
+            Start Project
           </CTAButton>
         </div>
       </section>
     </div>
   );
-}
-
-// Helper to render table cells (Check, X, or Text)
-function renderCell(value: string | boolean) {
-  if (value === true)
-    return <Check className="w-5 h-5 text-green-500 mx-auto" />;
-  if (value === false) return <X className="w-5 h-5 text-slate-600 mx-auto" />;
-  return <span className="text-white">{value}</span>;
 }
